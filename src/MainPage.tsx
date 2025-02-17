@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import { setWindow } from "./store/windowSlice";
 import Physics from "./physics/Physics";
 import background from "./assets/background.png"
-
 const useStyles = createUseStyles({
     main: {
         width: "100%",
