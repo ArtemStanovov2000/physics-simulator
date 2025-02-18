@@ -1,29 +1,55 @@
-import { FC } from "react";
 import { createUseStyles } from "react-jss";
-import { useEffect, useState } from "react";
+import { useEffect, useState, FC, RefObject, useRef } from "react";
+import { renderElement } from "./renderElement";
+import { createStartWindow } from "./createStartWindow";
 
 const useStyles = createUseStyles({
+    page: {
+
+    },
     canvas: {
     },
 });
 
-const Canvas: FC = () => {
-    const [time, setTime] = useState(0);
+const TheRocheLimit: FC = () => {
+    const canvasRef: RefObject<HTMLCanvasElement> = useRef<HTMLCanvasElement>(null)
+    const [frameIndex, setFrameIndex] = useState(1);
+    const [coords, setCoords] = useState({ x: 0, y: 0 })
     const classes = useStyles()
 
     useEffect(() => {
         const timer = setInterval(() => {
-            setTime(time => time + 1);
+            setFrameIndex(frameIndex => frameIndex + 1);
         }, 30);
 
         return () => clearInterval(timer);
-    }, [time]);
+    });
+
+    const onMouseMove = (e) => {
+        setCoords({
+            x: e.clientX - e.target.offsetLeft,
+            y: e.clientY - e.target.offsetTop,
+        })
+    }
+
+    useEffect(() => {
+        const canvas: HTMLCanvasElement | null = canvasRef.current;
+        const ctx: CanvasRenderingContext2D | null = canvas?.getContext('2d')
+        createStartWindow(ctx, window.innerWidth, window.innerHeight)
+        renderElement(ctx, frameIndex, coords)
+    }, [frameIndex])
 
     return (
-        <div className={classes.canvas}>
-            <canvas/>
+        <div tabIndex={0} className={classes.page}>
+            <canvas 
+            ref={canvasRef}
+            onMouseMove={onMouseMove}
+            width={window.innerWidth}
+            height={window.innerHeight}
+            className={classes.canvas}>
+            </canvas>
         </div>
     )
 }
 
-export default Canvas
+export default TheRocheLimit

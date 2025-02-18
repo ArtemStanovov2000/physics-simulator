@@ -3,12 +3,12 @@ import { createUseStyles } from "react-jss";
 import { useDispatch } from "react-redux";
 import { setWindow } from "./store/windowSlice";
 import Physics from "./physics/Physics";
-import background from "./assets/background.png"
+import { image } from "./assets/image/image";
 const useStyles = createUseStyles({
     main: {
         width: "100%",
         height: "100vh",
-        backgroundImage: `url(${background})`,
+        backgroundImage: `url(${image.background})`,
         display: "flex",
         justifyContent: "center",
         alignItems: "center",

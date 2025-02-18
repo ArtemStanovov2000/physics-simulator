@@ -3,15 +3,16 @@ import { createUseStyles } from "react-jss";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { setWindow } from "../store/windowSlice";
+import { image } from "../assets/image/image";
+import TheRocheLimit from "./theRocheLimit/TheRocheLimit";
 import MainPage from "../MainPage";
-import background from "../assets/background.png"
 import Cart from "../shared/Cart";
 
 const useStyles = createUseStyles({
     main: {
         width: "100%",
         height: "100vh",
-        backgroundImage: `url(${background})`,
+        backgroundImage: `url(${image.background})`,
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
@@ -88,7 +89,7 @@ const Physics: FC = () => {
     return (
         <div className={classes.main}>
             <a onClick={() => dispatch(setWindow(<MainPage />))} className={classes.mainCart}>На раздел выше</a>
-            {time > 10 ? <Cart label={"Предел Роша"}/> : null}
+            {time > 10 ? <Cart onClick={() => dispatch(setWindow(<TheRocheLimit />))} label={"Предел Роша"}/> : null}
             {time > 20 ? <Cart label={"Симулятор гравитации"}/> : null}
         </div>
     )

@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { createUseStyles } from "react-jss";
 import { useEffect, useState } from "react";
+import { MouseEventHandler } from "react";
 
 const useStyles = createUseStyles({
     '@keyframes vave': {
@@ -38,10 +39,11 @@ const useStyles = createUseStyles({
 });
 
 type Props = {
-    label: string
+    label: string,
+    onClick?: MouseEventHandler<HTMLAnchorElement>
 }
 
-const Cart: FC<Props> = ({label}) => {
+const Cart: FC<Props> = ({label, onClick}) => {
     const classes = useStyles()
 
     const [state, setState] = useState("")
@@ -58,7 +60,7 @@ const Cart: FC<Props> = ({label}) => {
     },[state])
 
     return (
-        <a className={classes.cart}>{state}</a>
+        <a onClick={onClick} className={classes.cart}>{state}</a>
     )
 }
 
