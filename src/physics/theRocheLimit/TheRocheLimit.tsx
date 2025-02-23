@@ -4,6 +4,7 @@ import { renderElement } from "./logic/renderElement";
 import { createStartWindow } from "./logic/createStartWindow";
 import { useDispatch } from "react-redux";
 import { setWindow } from "../../store/windowSlice";
+import { createDottedCircle } from "./logic/createDottedCircle";
 import Physics from "../Physics";
 import Button from "../../shared/Button";
 import ArrowBackButton from "./buttons/ArrowBackButton";
@@ -53,6 +54,7 @@ const TheRocheLimit: FC = () => {
         const canvas: HTMLCanvasElement | null = canvasRef.current;
         const ctx: CanvasRenderingContext2D | null | undefined = canvas?.getContext('2d')
         createStartWindow(ctx, window.innerWidth, window.innerHeight)
+        createDottedCircle(ctx, 200)
         renderElement(ctx, frameIndex, coords)
     }, [frameIndex])
 
