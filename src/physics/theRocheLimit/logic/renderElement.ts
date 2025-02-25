@@ -4,7 +4,7 @@ import { gravity } from "./gravity";
 const drawPoint = (context: CanvasRenderingContext2D, point: Particle) => {
     context.fillStyle = `${point.color}`;
     context.beginPath();
-    context.arc(point.x, point.y, Math.sqrt(point.mass), 0, 2 * Math.PI);
+    context.arc(point.x, point.y, point.size, 0, 2 * Math.PI);
     context.fill();
 }
 

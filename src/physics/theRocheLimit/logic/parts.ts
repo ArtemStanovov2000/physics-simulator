@@ -4,12 +4,13 @@ export type Particle = {
     speedX: number;
     speedY: number;
     mass: number;
+    size: number;
     color: string;
 }
 
 export const parts: Particle[] = []
 
-const COUNT_PARTH = 100
+const COUNT_PARTH = 300
 
 const colors = () => {
     const colorList = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"]
@@ -23,26 +24,28 @@ const colors = () => {
 }
 
 
-export const createParth = (height: number, wight: number) => {
+export const createParth = () => {
     for (let i = 0; i < COUNT_PARTH; i++) {
         parts.push({
-            x: Math.floor(Math.random() * wight),
-            y: Math.floor(Math.random() * height),
-            speedX: (Math.random() - 0.5) * 0.001,
-            speedY: (Math.random() - 0.5) * 0.001,
-            mass: 4,
+            x: Math.floor(window.innerWidth / 2) + Math.random() * 10,
+            y: 150 + Math.random() * 10,
+            speedX: 1.2,
+            speedY: 0,
+            mass: 0.05,
+            size: Math.sqrt(4),
             color: colors()
         })
     }
 }
 
-createParth(window.innerHeight, window.innerWidth)
+createParth()
 
 parts[0] = {
     x: Math.floor(window.innerWidth / 2),
     y: Math.floor(window.innerHeight / 2),
     speedX: 0,
     speedY: 0,
-    mass: 1000,
+    mass: 300,
+    size: Math.sqrt(300),
     color: colors()
 }

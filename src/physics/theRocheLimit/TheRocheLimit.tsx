@@ -38,7 +38,7 @@ const TheRocheLimit: FC = () => {
     useEffect(() => {
         const timer = setInterval(() => {
             setFrameIndex(frameIndex => frameIndex + 1);
-        }, 30);
+        }, 16);
 
         return () => clearInterval(timer);
     });
@@ -47,7 +47,7 @@ const TheRocheLimit: FC = () => {
         const canvas: HTMLCanvasElement | null = canvasRef.current;
         const ctx: CanvasRenderingContext2D | null | undefined = canvas?.getContext('2d')
         createStartWindow(ctx, window.innerWidth, window.innerHeight)
-        createDottedCircle(ctx, 200)
+        createDottedCircle(ctx, 315)
         renderElement(ctx, frameIndex, isWork)
     }, [frameIndex])
 
