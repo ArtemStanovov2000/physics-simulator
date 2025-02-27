@@ -28,8 +28,8 @@ export const createParth = () => {
     for (let i = 0; i < COUNT_PARTH; i++) {
         parts.push({
             x: Math.floor(window.innerWidth / 2) + Math.random() * 10,
-            y: 150 + Math.random() * 10,
-            speedX: 1.2,
+            y: (window.innerHeight / 2) - 330 + Math.random() * 10,
+            speedX: 2.09,
             speedY: 0,
             mass: 0.05,
             size: Math.sqrt(4),
@@ -45,7 +45,7 @@ parts[0] = {
     y: Math.floor(window.innerHeight / 2),
     speedX: 0,
     speedY: 0,
-    mass: 300,
+    mass: 1000,
     size: Math.sqrt(300),
     color: colors()
 }

@@ -65,7 +65,7 @@ const useStyles = createUseStyles({
 
 type Props = {
     label: string,
-    isNav: boolean
+    isNav?: boolean
     onClick?: MouseEventHandler<HTMLButtonElement>,
     icon?: JSX.Element
 }

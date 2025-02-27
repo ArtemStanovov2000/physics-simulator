@@ -11,8 +11,6 @@ export const createDottedCircle = (ctx: CanvasRenderingContext2D | null | undefi
             angleEnd: (2 * Math.PI / countArc) * (i + (LENGTH_ARC / sumLength))
         })
     }
-    
-    console.log(dottedArray)
 
     if (ctx) {
         for (let i = 0; i < dottedArray.length; i++) {

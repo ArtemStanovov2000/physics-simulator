@@ -5,12 +5,15 @@ import { createStartWindow } from "./logic/createStartWindow";
 import { useDispatch } from "react-redux";
 import { setWindow } from "../../store/windowSlice";
 import { createDottedCircle } from "./logic/createDottedCircle";
+import { restart } from "./logic/restart";
 import Physics from "../Physics";
 import Button from "../../shared/Button";
 import ArrowBackButton from "./buttons/ArrowBackButton";
 import ArrowStartButton from "./buttons/ArrowStartButton";
 import PauseButton from "./buttons/PauseButton";
 import CrossButton from "./buttons/CrossButton";
+import ExplanationButton from "./buttons/ExplanationButton";
+import Explanation from "./Explanation";
 
 const useStyles = createUseStyles({
     page: {
@@ -43,6 +46,8 @@ const TheRocheLimit: FC = () => {
         return () => clearInterval(timer);
     });
 
+    console.log(window.innerHeight)
+
     useEffect(() => {
         const canvas: HTMLCanvasElement | null = canvasRef.current;
         const ctx: CanvasRenderingContext2D | null | undefined = canvas?.getContext('2d')
@@ -60,10 +65,11 @@ const TheRocheLimit: FC = () => {
                 className={classes.canvas}>
             </canvas>
             <div className={classes.nav}>
-                <Button isNav={true} icon={<ArrowBackButton/>} label={"На раздел выше"} onClick={() => dispatch(setWindow(<Physics/>))}/>
-                <Button onClick={() => setIsWork(true)} isNav={false} icon={<ArrowStartButton/>} label={"Запустить симуляцию"}/>
-                <Button onClick={() => setIsWork(false)} isNav={false} icon={<PauseButton/>} label={"Остановить симуляцию"}/>
-                <Button isNav={false} icon={<CrossButton/>} label={"Стереть все элементы"}/>
+                <Button isNav={true} icon={<ArrowBackButton />} label={"На раздел выше"} onClick={() => dispatch(setWindow(<Physics />))} />
+                <Button onClick={() => setIsWork(true)} icon={<ArrowStartButton />} label={"Запустить симуляцию"} />
+                <Button onClick={() => setIsWork(false)} icon={<PauseButton />} label={"Остановить симуляцию"} />
+                <Button onClick={() => restart()} icon={<CrossButton />} label={"Перезапустить симуляцию"} />
+                <Button icon={<ExplanationButton />} label={"[ Объяснение ]"} onClick={() => dispatch(setWindow(<Explanation />))}/>
             </div>
         </div>
     )

@@ -10,8 +10,8 @@ export const gravity = (array: Particle[]) => {
                 deltaX += 0
                 deltaY += 0
             } else if (distanse < (array[i].size + array[j].size)) {
-                deltaX -= ((array[i].x - array[j].x) * Math.pow((1 / distanse), 2)) / 400 * array[j].mass
-                deltaY -= ((array[i].y - array[j].y) * Math.pow((1 / distanse), 2)) / 400 * array[j].mass
+                deltaX -= ((array[i].x - array[j].x) * Math.pow((1 / distanse), 2)) / 200 * array[j].mass
+                deltaY -= ((array[i].y - array[j].y) * Math.pow((1 / distanse), 2)) / 200 * array[j].mass
             } else {
                 deltaX += ((array[i].x - array[j].x) * Math.pow((1 / distanse), 2)) / 200 * array[j].mass
                 deltaY += ((array[i].y - array[j].y) * Math.pow((1 / distanse), 2)) / 200 * array[j].mass
@@ -20,12 +20,10 @@ export const gravity = (array: Particle[]) => {
         if (i !== 0) {
             array[i].speedX = array[i].speedX - deltaX
             array[i].speedY = array[i].speedY - deltaY
-            array[i].speedX = array[i].speedX * 0.999
-            array[i].speedY = array[i].speedY * 0.999
+            array[i].speedX = array[i].speedX * 0.9993
+            array[i].speedY = array[i].speedY * 0.9993
             array[i].x += array[i].speedX
             array[i].y += array[i].speedY
         }
     }
-
-    console.log(array[1].speedY, array[1].speedX)
 }
