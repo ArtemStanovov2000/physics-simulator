@@ -1,8 +1,10 @@
 import { createUseStyles } from "react-jss";
-import { useState, FC } from "react";
+import { useState, FC, useRef, useEffect } from "react";
+import { RefObject } from "react";
 import { useDispatch } from "react-redux";
 import { setWindow } from "../../store/windowSlice";
 import { image } from "../../assets/image/image";
+import { createStartWindow } from "./logic/createStartWindow";
 import Button from "../../shared/Button";
 import TheRocheLimit from "./TheRocheLimit";
 import ArrowBackButton from "./buttons/ArrowBackButton";
@@ -10,8 +12,8 @@ import ArrowBackButton from "./buttons/ArrowBackButton";
 const useStyles = createUseStyles({
     page: {
         width: "100%",
-        height: "100vh",
         backgroundImage: `url(${image.background})`,
+        backgroundRepeat: "repeat",
         position: "relative",
         paddingTop: "60px"
     },
@@ -49,6 +51,23 @@ const Explanation: FC = () => {
     const classes = useStyles()
 
     const dispatch = useDispatch()
+    const canvasRef: RefObject<HTMLCanvasElement | null> = useRef<HTMLCanvasElement>(null)
+    const [frameIndex, setFrameIndex] = useState(1);
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setFrameIndex(frameIndex => frameIndex + 1);
+        }, 16);
+
+        return () => clearInterval(timer);
+    });
+
+    useEffect(() => {
+            const canvas: HTMLCanvasElement | null = canvasRef.current;
+            const ctx: CanvasRenderingContext2D | null | undefined = canvas?.getContext('2d')
+            createStartWindow(ctx, 960, 500)
+            //renderElement(ctx, frameIndex, isWork)
+        }, [frameIndex])
 
     return (
         <div className={classes.page}>
@@ -62,7 +81,15 @@ const Explanation: FC = () => {
                 </div>
                 <div className={classes.textBox}>
                     <h3 className={classes.title}>Более наглядно</h3>
-                    <p className={classes.text}>На тело на орбите влияет как минимум 2 основные силы, это гравитация которая стремиться удержать форму объекта</p>
+                    <p className={classes.text}>На тело на орбите влияет как минимум 2 основные силы, это гравитация которая стремиться удержать форму объекта. Гравитация, а следовательно
+                        и возможность сопротивляться внешним воздействиям прямо пропорционально массе. Посмотрим, как это выглядит.
+                    </p>
+                    <canvas
+                        ref={canvasRef}
+                        width={960}
+                        height={500}
+                    ></canvas>
+                    <p>f</p>
                 </div>
             </div>
         </div >
