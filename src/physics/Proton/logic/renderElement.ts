@@ -1,5 +1,4 @@
 import { parts, Particle } from "./parts";
-import { gravityRoche } from "./gravityRoche";
 
 const drawPoint = (context: CanvasRenderingContext2D, point: Particle) => {
     context.fillStyle = `${point.color}`;
@@ -16,6 +15,6 @@ export const renderElement = (ctx: CanvasRenderingContext2D | null | undefined, 
     }
 
     if (isWork) {
-        gravityRoche(parts)
+
     }
 }

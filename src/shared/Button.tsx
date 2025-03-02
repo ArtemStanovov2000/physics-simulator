@@ -97,7 +97,6 @@ const Button: FC<Props> = ({ label, isNav, onClick, icon }) => {
             }
         }, 15);
         
-        console.log(state, count)
         return () => clearInterval(timer);
     }, [state, mouseEnterFlag, count])
 

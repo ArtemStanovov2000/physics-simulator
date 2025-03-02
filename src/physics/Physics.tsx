@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { setWindow } from "../store/windowSlice";
 import { image } from "../assets/image/image";
 import TheRocheLimit from "./theRocheLimit/TheRocheLimit";
+import Proton from "./Proton/Proton";
 import MainPage from "../MainPage";
 import Cart from "../shared/Cart";
 
@@ -90,7 +91,7 @@ const Physics: FC = () => {
         <div className={classes.main}>
             <a onClick={() => dispatch(setWindow(<MainPage />))} className={classes.mainCart}>На раздел выше</a>
             {time > 10 ? <Cart onClick={() => dispatch(setWindow(<TheRocheLimit />))} label={"Предел Роша"}/> : null}
-            {time > 20 ? <Cart label={"Симулятор гравитации"}/> : null}
+            {time > 20 ? <Cart onClick={() => dispatch(setWindow(<Proton />))} label={"Протон"}/> : null}
         </div>
     )
 }

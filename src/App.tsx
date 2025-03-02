@@ -1,7 +1,7 @@
 import MainPage from "./MainPage"
 import { createUseStyles } from "react-jss";
 import { useSelector } from "react-redux";
-import TheRocheLimit from "./physics/theRocheLimit/TheRocheLimit";
+import Proton from "./physics/Proton/Proton";
 import "./index.css"
 
 const useStyles = createUseStyles({
@@ -17,7 +17,7 @@ function App() {
 
   return (
     <div className={classes.app}>
-      {storeWindow === null ? <TheRocheLimit/> : storeWindow}
+      {storeWindow === null ? <Proton/> : storeWindow}
     </div>
   )
 }
