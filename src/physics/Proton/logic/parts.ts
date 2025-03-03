@@ -1,63 +1,37 @@
-import { colors } from "./colors";
+import { U_quark, D_quark, C_quark, S_quark, T_quark, B_quark } from "../particle/Quarks";
+import { Z_bozon, WPositiwe_bozon, WNegative_bozon } from "../particle/Bozons";
 
-export type Particle = {
-    x: number;
-    y: number;
-    speedX: number;
-    speedY: number;
-    charge: number;
-    size: number;
-    color: string;
-}
+export type Quark = U_quark | D_quark | C_quark | S_quark | T_quark | B_quark
+export type Bozon = Z_bozon | WPositiwe_bozon | WNegative_bozon
 
-export const parts: Particle[] = []
+export const quarks: Quark[] = []
+export const bozons: Bozon[] = []
 
-const COUNT_PARTH = 3
 const RADIUS_PROTON = 200
-const SIZE_QUARK = 30
 
-export const createParth = () => {
-    for (let i = 0; i < COUNT_PARTH; i++) {
-        parts.push({
-            x: Math.floor(window.innerWidth / 2) + Math.random() * 10,
-            y: (window.innerHeight / 2) - 330 + Math.random() * 10,
-            speedX: 0,
-            speedY: 0,
-            charge: 1,
-            size: SIZE_QUARK,
-            color: colors()
-        })
+quarks.push(new U_quark(
+    {
+        x: Math.floor(window.innerWidth / 2),
+        y: Math.floor(window.innerHeight / 2) + RADIUS_PROTON
+    },
+    "blue")
+)
+
+quarks.push(new U_quark(
+    {
+        x: Math.floor(window.innerWidth / 2) - RADIUS_PROTON * Math.sqrt(3) / 2,
+        y: Math.floor(window.innerHeight / 2) - RADIUS_PROTON * 0.5
     }
-}
+    ,
+    "green")
+)
 
-createParth()
+quarks.push(new D_quark(
+    {
+        x: Math.floor(window.innerWidth / 2) + RADIUS_PROTON * Math.sqrt(3) / 2,
+        y: Math.floor(window.innerHeight / 2) - RADIUS_PROTON * 0.5
+    },
+    "red")
+)
 
-parts[0] = {
-    x: Math.floor(window.innerWidth / 2),
-    y: Math.floor(window.innerHeight / 2) + RADIUS_PROTON,
-    speedX: 0,
-    speedY: 0,
-    charge: 1,
-    size: SIZE_QUARK,
-    color: "#ff3030"
-}
 
-parts[1] = {
-    x: Math.floor(window.innerWidth / 2) - RADIUS_PROTON * Math.sqrt(3) / 2,
-    y: Math.floor(window.innerHeight / 2) - RADIUS_PROTON * 0.5,
-    speedX: 0,
-    speedY: 0,
-    charge: 1,
-    size: SIZE_QUARK,
-    color: "#30ff30"
-}
-
-parts[2] = {
-    x: Math.floor(window.innerWidth / 2) + RADIUS_PROTON * Math.sqrt(3) / 2,
-    y: Math.floor(window.innerHeight / 2) - RADIUS_PROTON * 0.5,
-    speedX: 0,
-    speedY: 0,
-    charge: 1,
-    size: SIZE_QUARK,
-    color: "#3030ff"
-}

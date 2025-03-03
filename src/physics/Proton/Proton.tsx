@@ -2,7 +2,7 @@ import { createUseStyles } from "react-jss";
 import { useEffect, useState, FC, RefObject, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { setWindow } from "../../store/windowSlice";
-import { createStartWindow } from "./logic/createStartWindow";
+import { createStartWindow } from "../utils/createStartWindow";
 import { renderElement } from "./logic/renderElement";
 import Physics from "../Physics";
 import Button from "../../shared/Button";

@@ -1,7 +1,7 @@
 import { createUseStyles } from "react-jss";
 import { useEffect, useState, FC, RefObject, useRef } from "react";
 import { renderElement } from "./logic/renderElement";
-import { createStartWindow } from "./logic/createStartWindow";
+import { createStartWindow } from "../utils/createStartWindow";
 import { useDispatch } from "react-redux";
 import { setWindow } from "../../store/windowSlice";
 import { createDottedCircle } from "./logic/createDottedCircle";
