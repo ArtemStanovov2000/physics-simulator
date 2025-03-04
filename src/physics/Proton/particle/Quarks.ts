@@ -6,8 +6,8 @@ export class U_quark extends Quark {
     readonly generation: 1
     readonly name: "U"
 
-    constructor(coordinates: {x: number, y: number}, colorQuark: "green" | "red" | "blue") {
-        super(coordinates, 12, 13, colorQuark)
+    constructor(coordinates: {x: number, y: number}, colorQuark: "green" | "red" | "blue", id: number) {
+        super(coordinates, 12, 13, colorQuark, id)
         this.name = "U"
         this.charge = 0.666
         this.mass = 2.16
@@ -21,8 +21,8 @@ export class D_quark extends Quark {
     readonly generation: 1
     readonly name: "D"
 
-    constructor(coordinates: {x: number, y: number}, colorQuark: "green" | "red" | "blue") {
-        super(coordinates, 12, 13, colorQuark)
+    constructor(coordinates: {x: number, y: number}, colorQuark: "green" | "red" | "blue", id: number) {
+        super(coordinates, 12, 13, colorQuark, id)
         this.name = "D"
         this.charge = -0.333
         this.mass = 4.67
@@ -36,8 +36,8 @@ export class C_quark extends Quark {
     readonly generation: 2
     readonly name: "C"
 
-    constructor(coordinates: {x: number, y: number}, colorQuark: "green" | "red" | "blue") {
-        super(coordinates, 12, 13, colorQuark)
+    constructor(coordinates: {x: number, y: number}, colorQuark: "green" | "red" | "blue", id: number) {
+        super(coordinates, 12, 13, colorQuark, id)
         this.name = "C"
         this.charge = 0.666
         this.mass = 1270
@@ -51,8 +51,8 @@ export class S_quark extends Quark {
     readonly generation: 2
     readonly name: "S"
 
-    constructor(coordinates: {x: number, y: number}, colorQuark: "green" | "red" | "blue") {
-        super(coordinates, 12, 13, colorQuark)
+    constructor(coordinates: {x: number, y: number}, colorQuark: "green" | "red" | "blue", id: number) {
+        super(coordinates, 12, 13, colorQuark, id)
         this.name = "S"
         this.charge = -0.333
         this.mass = 93.4
@@ -66,8 +66,8 @@ export class T_quark extends Quark {
     readonly generation: 3
     readonly name: "T"
 
-    constructor(coordinates: {x: number, y: number}, colorQuark: "green" | "red" | "blue") {
-        super(coordinates, 12, 13, colorQuark)
+    constructor(coordinates: {x: number, y: number}, colorQuark: "green" | "red" | "blue", id: number) {
+        super(coordinates, 12, 13, colorQuark, id)
         this.name = "T"
         this.charge = 0.666
         this.mass = 172700
@@ -81,8 +81,8 @@ export class B_quark extends Quark {
     readonly generation: 3
     readonly name: "B"
 
-    constructor(coordinates: {x: number, y: number}, colorQuark: "green" | "red" | "blue") {
-        super(coordinates, 12, 13, colorQuark)
+    constructor(coordinates: {x: number, y: number}, colorQuark: "green" | "red" | "blue", id: number) {
+        super(coordinates, 12, 13, colorQuark, id)
         this.name = "B"
         this.charge = -0.333
         this.mass = 4180

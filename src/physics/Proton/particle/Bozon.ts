@@ -7,13 +7,15 @@ export class Bozon {
     readonly size: 20
     textOffsetX: number
     textOffsetY: number
+    id: number
     textSize: number
+    colorQuark: "green" | "red" | "blue"
     coordinates: {
         x: number
         y: number
     }
 
-    constructor(coordinates: {x: number, y: number}, textOffsetX: number, textOffsetY: number, speedY: number, speedX: number) {
+    constructor(coordinates: {x: number, y: number}, textOffsetX: number, textOffsetY: number, speedY: number, speedX: number, colorQuark: "green" | "red" | "blue", id: number) {
         this.speedX = speedX
         this.speedY = speedY
         this.spin = 1
@@ -21,9 +23,11 @@ export class Bozon {
         this.family = "calibrationBoson"
         this.size = 20
         this.textSize = 20
+        this.colorQuark = colorQuark
         this.coordinates = coordinates
         this.textOffsetX = textOffsetX
         this.textOffsetY = textOffsetY
+        this.id = id
     }
 
     setSpeed(speedY: number, speedX: number) {

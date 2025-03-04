@@ -34,8 +34,6 @@ export const renderElement = (ctx: CanvasRenderingContext2D | null | undefined, 
         }
     }
 
-    console.log(bozons)
-
     if (isWork) {
         interaction(bozons, quarks)
     }
