@@ -64,4 +64,15 @@ export class Quark {
     getColor() {
         return this.color
     }
+
+    setColor(colorQuark: "green" | "red" | "blue") {
+        this.colorQuark = colorQuark
+        if (this.colorQuark === "red") {
+            this.color = "#d54040"
+        } else if (this.colorQuark === "green") {
+            this.color = "#40d540"
+        } else if (this.colorQuark === "blue") {
+            this.color = "#4040d5"
+        }
+    }
 }

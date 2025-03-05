@@ -15,7 +15,7 @@ quarks.push(new U_quark(
         y: Math.floor(window.innerHeight / 2) + RADIUS_PROTON
     },
     "blue",
-    1
+    0
 ))
 
 quarks.push(new U_quark(
@@ -25,7 +25,7 @@ quarks.push(new U_quark(
     }
     ,
     "green",
-    2
+    1
 ))
 
 quarks.push(new D_quark(
@@ -34,7 +34,7 @@ quarks.push(new D_quark(
         y: Math.floor(window.innerHeight / 2) - RADIUS_PROTON * 0.5
     },
     "red",
-    3
+    2
 ))
 
 

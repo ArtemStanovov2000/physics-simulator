@@ -8,14 +8,15 @@ export class Bozon {
     textOffsetX: number
     textOffsetY: number
     id: number
+    quarkTargetId: number
     textSize: number
-    colorQuark: "green" | "red" | "blue"
+    colorBozon: "green" | "red" | "blue"
     coordinates: {
         x: number
         y: number
     }
 
-    constructor(coordinates: {x: number, y: number}, textOffsetX: number, textOffsetY: number, speedY: number, speedX: number, colorQuark: "green" | "red" | "blue", id: number) {
+    constructor(coordinates: { x: number, y: number }, textOffsetX: number, textOffsetY: number, speedY: number, speedX: number, colorBozon: "green" | "red" | "blue", id: number) {
         this.speedX = speedX
         this.speedY = speedY
         this.spin = 1
@@ -23,11 +24,12 @@ export class Bozon {
         this.family = "calibrationBoson"
         this.size = 20
         this.textSize = 20
-        this.colorQuark = colorQuark
+        this.colorBozon = colorBozon
         this.coordinates = coordinates
         this.textOffsetX = textOffsetX
         this.textOffsetY = textOffsetY
         this.id = id
+        this.quarkTargetId = id
     }
 
     setSpeed(speedY: number, speedX: number) {
@@ -40,5 +42,13 @@ export class Bozon {
             x: this.coordinates.x + this.speedX,
             y: this.coordinates.y + this.speedY
         }
+    }
+
+    setQuarkTargetId(length: number) {
+        this.quarkTargetId = Math.floor(Math.random() * length)
+    }
+
+    getColorBozon() {
+        return this.colorBozon
     }
 }
