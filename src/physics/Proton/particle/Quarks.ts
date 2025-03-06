@@ -8,10 +8,10 @@ export class U_quark extends Quark {
 
     constructor(coordinates: {x: number, y: number}, colorQuark: "green" | "red" | "blue", id: number) {
         super(coordinates, 12, 13, colorQuark, id)
-        this.name = "U"
         this.charge = 0.666
         this.mass = 2.16
         this.generation = 1
+        this.name = "U"
     }
 }
 
@@ -23,10 +23,10 @@ export class D_quark extends Quark {
 
     constructor(coordinates: {x: number, y: number}, colorQuark: "green" | "red" | "blue", id: number) {
         super(coordinates, 12, 13, colorQuark, id)
-        this.name = "D"
         this.charge = -0.333
         this.mass = 4.67
         this.generation = 1
+        this.name = "D"
     }
 }
 
@@ -38,10 +38,10 @@ export class C_quark extends Quark {
 
     constructor(coordinates: {x: number, y: number}, colorQuark: "green" | "red" | "blue", id: number) {
         super(coordinates, 12, 13, colorQuark, id)
-        this.name = "C"
         this.charge = 0.666
         this.mass = 1270
         this.generation = 2
+        this.name = "C"
     }
 }
 
@@ -53,10 +53,10 @@ export class S_quark extends Quark {
 
     constructor(coordinates: {x: number, y: number}, colorQuark: "green" | "red" | "blue", id: number) {
         super(coordinates, 12, 13, colorQuark, id)
-        this.name = "S"
         this.charge = -0.333
         this.mass = 93.4
         this.generation = 2
+        this.name = "S"
     }
 }
 
@@ -68,10 +68,10 @@ export class T_quark extends Quark {
 
     constructor(coordinates: {x: number, y: number}, colorQuark: "green" | "red" | "blue", id: number) {
         super(coordinates, 12, 13, colorQuark, id)
-        this.name = "T"
         this.charge = 0.666
         this.mass = 172700
         this.generation = 3
+        this.name = "T"
     }
 }
 
@@ -83,10 +83,10 @@ export class B_quark extends Quark {
 
     constructor(coordinates: {x: number, y: number}, colorQuark: "green" | "red" | "blue", id: number) {
         super(coordinates, 12, 13, colorQuark, id)
-        this.name = "B"
         this.charge = -0.333
         this.mass = 4180
         this.generation = 3
+        this.name = "B"
     }
 }
 

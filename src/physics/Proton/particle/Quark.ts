@@ -1,13 +1,13 @@
 export class Quark {
     speedX: number;
     speedY: number;
-    readonly spin: 0.5
-    readonly group: "quark"
-    readonly family: "fermion"
-    readonly size: 30
+    spin: 0.5
+    group: "quark"
+    family: "fermion"
+    size: 30
     textSize: number
     id: number
-    private color: string
+    color: string
     colorQuark: "green" | "red" | "blue"
     textOffsetX: number
     textOffsetY: number
@@ -23,13 +23,13 @@ export class Quark {
         this.group = "quark"
         this.family = "fermion"
         this.size = 30
-        this.colorQuark = colorQuark
         this.textSize = 35
         this.id = id
         this.color = ""
-        this.coordinates = coordinates
+        this.colorQuark = colorQuark
         this.textOffsetX = textOffsetX
         this.textOffsetY = textOffsetY
+        this.coordinates = coordinates
 
         if (this.colorQuark === "red") {
             this.color = "#d54040"
@@ -59,10 +59,6 @@ export class Quark {
             flag ? this.color = "#d54040" : this.color = "#40d540"
             flag ? this.colorQuark = "red" : this.colorQuark = "green"
         }
-    }
-
-    getColor() {
-        return this.color
     }
 
     setColor(colorQuark: "green" | "red" | "blue") {
