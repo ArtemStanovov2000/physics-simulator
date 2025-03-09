@@ -1,8 +1,10 @@
-import { quarks, Quark, bozons, Bozon, gluonFieldParticle } from "./parts";
+import { quarks, Quark, bozons, Bozon, gluonFieldParticle, virtualParticle, VirtualParticle } from "./parts";
 import { GluonField } from "../particle/GluonField";
 import { interaction } from "./interaction";
+import { protonPageCoordinates } from "../coordinates";
+import { cursor, CursorElement } from "../cursor";
 
-const drawParticle = (context: CanvasRenderingContext2D, point: Quark | Bozon) => {
+const drawParticle = (context: CanvasRenderingContext2D, point: Quark | Bozon | VirtualParticle) => {
     context.fillStyle = `${point.color}`;
     context.beginPath();
     context.arc(point.coordinates.x, point.coordinates.y, point.size, 0, 2 * Math.PI);
@@ -22,7 +24,16 @@ const drawGluonFieldParticle = (context: CanvasRenderingContext2D, point: GluonF
     context.fillStyle = `${point.color}`;
 }
 
-export const renderElement = (ctx: CanvasRenderingContext2D | null | undefined, isWork: boolean) => {
+const drawCursor = (context: CanvasRenderingContext2D, element: CursorElement, cursorCoord: {xCoordinates: number, yCoordinates: number}) => {
+    context.beginPath()
+    context.moveTo(element.xStart + cursorCoord.xCoordinates, element.yStart + cursorCoord.yCoordinates)
+    context.lineTo(element.xEnd + cursorCoord.xCoordinates, element.yEnd + cursorCoord.yCoordinates)
+    context.strokeStyle = `#ffffff`
+    context.lineWidth = 2
+    context.stroke()
+}
+
+export const renderElement = (ctx: CanvasRenderingContext2D | null | undefined, isWork: boolean, mouseDoun: boolean) => {
     if (ctx) {
         for (let i = 0; i < gluonFieldParticle.length; i++) {
             drawGluonFieldParticle(ctx, gluonFieldParticle[i])
@@ -32,12 +43,24 @@ export const renderElement = (ctx: CanvasRenderingContext2D | null | undefined, 
             drawParticle(ctx, quarks[i])
         }
 
-        for (let i = 0; i < quarks.length; i++) {
-            drawParticle(ctx, quarks[i])
+        for (let i = 0; i < bozons.length; i++) {
+            drawParticle(ctx, bozons[i])
+        }
+
+        for (let i = 0; i < virtualParticle.length; i++) {
+            drawParticle(ctx, virtualParticle[i])
+        }
+
+        for (let i = 0; i < virtualParticle.length; i++) {
+            drawParticle(ctx, virtualParticle[i])
+        }
+
+        for (let i = 0; i < cursor.length; i++) {
+            drawCursor(ctx, cursor[i], protonPageCoordinates.getCoordinates())
         }
     }
 
     if (isWork) {
-        interaction(bozons, quarks, gluonFieldParticle)
+        interaction(virtualParticle, bozons, quarks, gluonFieldParticle, mouseDoun)
     }
 }

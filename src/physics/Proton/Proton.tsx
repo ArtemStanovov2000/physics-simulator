@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { setWindow } from "../../store/windowSlice";
 import { createStartWindow } from "../utils/createStartWindow";
 import { renderElement } from "./logic/renderElement";
+import { protonPageCoordinates } from "./coordinates";
 import Physics from "../Physics";
 import Button from "../../shared/Button";
 import ArrowBackButton from "../../shared/ButtonIcons/ArrowBackButton";
@@ -17,7 +18,8 @@ const useStyles = createUseStyles({
         position: "relative"
     },
     canvas: {
-        position: "absolute"
+        position: "absolute",
+        cursor: "none"
     },
     nav: {
         position: "absolute",
@@ -32,6 +34,7 @@ const Proton: FC = () => {
     const canvasRef: RefObject<HTMLCanvasElement | null> = useRef<HTMLCanvasElement>(null)
     const [frameIndex, setFrameIndex] = useState(1);
     const [isWork, setIsWork] = useState(true);
+    const [mouseDoun, setMouseDoun] = useState(false);
     const classes = useStyles()
     const dispatch = useDispatch()
 
@@ -47,13 +50,23 @@ const Proton: FC = () => {
         const canvas: HTMLCanvasElement | null = canvasRef.current;
         const ctx: CanvasRenderingContext2D | null | undefined = canvas?.getContext('2d')
         createStartWindow(ctx, window.innerWidth, window.innerHeight)
-        renderElement(ctx, isWork)
+        renderElement(ctx, isWork, mouseDoun)
     }, [frameIndex])
+
+    const onMouseMove = (e: any) => {
+        protonPageCoordinates.setCoordinates(
+            e.clientX - e.target.offsetLeft,
+            e.clientY - e.target.offsetTop,
+        )
+    }
 
     return (
         <div tabIndex={0} className={classes.page}>
             <canvas
                 ref={canvasRef}
+                onMouseMove={onMouseMove}
+                onMouseUp={() => setMouseDoun(false)}
+                onMouseDown={() => setMouseDoun(true)}
                 width={window.innerWidth}
                 height={window.innerHeight}
                 className={classes.canvas}>
