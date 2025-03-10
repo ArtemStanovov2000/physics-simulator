@@ -6,8 +6,8 @@ export class Anti_U_quark extends AntiQuark {
     readonly generation: 1
     readonly name: "U"
 
-    constructor(coordinates: {x: number, y: number}, colorQuark: "antigreen" | "antired" | "antiblue") {
-        super(coordinates, 12, 13, colorQuark)
+    constructor(coordinates: {x: number, y: number}, colorQuark: "antigreen" | "antired" | "antiblue", id: number, speedX?: number, speedY?: number) {
+        super(coordinates, 12, 13, colorQuark, id, speedX, speedY)
         this.charge = 0.666
         this.mass = 2.16
         this.generation = 1
@@ -21,8 +21,8 @@ export class Anti_D_quark extends AntiQuark {
     readonly generation: 1
     readonly name: "D"
 
-    constructor(coordinates: {x: number, y: number}, colorQuark: "antigreen" | "antired" | "antiblue") {
-        super(coordinates, 12, 13, colorQuark)
+    constructor(coordinates: {x: number, y: number}, colorQuark: "antigreen" | "antired" | "antiblue", id: number, speedX?: number, speedY?: number) {
+        super(coordinates, 12, 13, colorQuark, id, speedX, speedY)
         this.charge = -0.333
         this.mass = 4.67
         this.generation = 1
@@ -36,8 +36,8 @@ export class Anti_C_quark extends AntiQuark {
     readonly generation: 2
     readonly name: "C"
 
-    constructor(coordinates: {x: number, y: number}, colorQuark: "antigreen" | "antired" | "antiblue") {
-        super(coordinates, 12, 13, colorQuark)
+    constructor(coordinates: {x: number, y: number}, colorQuark: "antigreen" | "antired" | "antiblue", id: number, speedX?: number, speedY?: number) {
+        super(coordinates, 12, 13, colorQuark, id, speedX, speedY)
         this.charge = 0.666
         this.mass = 1270
         this.generation = 2
@@ -51,8 +51,8 @@ export class Anti_S_quark extends AntiQuark {
     readonly generation: 2
     readonly name: "S"
 
-    constructor(coordinates: {x: number, y: number}, colorQuark: "antigreen" | "antired" | "antiblue") {
-        super(coordinates, 12, 13, colorQuark)
+    constructor(coordinates: {x: number, y: number}, colorQuark: "antigreen" | "antired" | "antiblue", id: number, speedX?: number, speedY?: number) {
+        super(coordinates, 12, 13, colorQuark, id, speedX, speedY)
         this.charge = -0.333
         this.mass = 93.4
         this.generation = 2
@@ -66,8 +66,8 @@ export class Anti_T_quark extends AntiQuark {
     readonly generation: 3
     readonly name: "T"
 
-    constructor(coordinates: {x: number, y: number}, colorQuark: "antigreen" | "antired" | "antiblue") {
-        super(coordinates, 12, 13, colorQuark)
+    constructor(coordinates: {x: number, y: number}, colorQuark: "antigreen" | "antired" | "antiblue", id: number, speedX?: number, speedY?: number) {
+        super(coordinates, 12, 13, colorQuark, id, speedX, speedY)
         this.charge = 0.666
         this.mass = 172700
         this.generation = 3
@@ -81,8 +81,8 @@ export class Anti_B_quark extends AntiQuark {
     readonly generation: 3
     readonly name: "B"
 
-    constructor(coordinates: {x: number, y: number}, colorQuark: "antigreen" | "antired" | "antiblue") {
-        super(coordinates, 12, 13, colorQuark)
+    constructor(coordinates: {x: number, y: number}, colorQuark: "antigreen" | "antired" | "antiblue", id: number, speedX?: number, speedY?: number) {
+        super(coordinates, 12, 13, colorQuark, id, speedX, speedY)
         this.charge = -0.333
         this.mass = 4180
         this.generation = 3

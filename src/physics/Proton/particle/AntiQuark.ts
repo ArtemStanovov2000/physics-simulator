@@ -5,6 +5,7 @@ export class AntiQuark {
     group: "antiquark"
     family: "fermion"
     size: 30
+    id: number
     textSize: number
     color: string
     colorQuark: "antigreen" | "antired" | "antiblue"
@@ -15,13 +16,14 @@ export class AntiQuark {
         y: number
     }
 
-    constructor(coordinates: { x: number, y: number }, textOffsetX: number, textOffsetY: number, colorQuark: "antigreen" | "antired" | "antiblue") {
-        this.speedX = 0
-        this.speedY = 0
+    constructor(coordinates: { x: number, y: number }, textOffsetX: number, textOffsetY: number, colorQuark: "antigreen" | "antired" | "antiblue", id: number, speedX?: number, speedY?: number) {
+        this.speedX = speedX || 0
+        this.speedY = speedY || 0
         this.spin = 0.5
         this.group = "antiquark"
         this.family = "fermion"
         this.size = 30
+        this.id = id
         this.textSize = 35
         this.color = ""
         this.colorQuark = colorQuark
@@ -41,6 +43,11 @@ export class AntiQuark {
     setSpeed(speedY: number, speedX: number) {
         this.speedY = speedY
         this.speedX = speedX
+    }
+
+    move() {
+        this.coordinates.x += this.speedX
+        this.coordinates.y += this.speedY
     }
 
     setColor(colorQuark: "antigreen" | "antired" | "antiblue") {

@@ -1,10 +1,10 @@
-import { quarks, Quark, bozons, Bozon, gluonFieldParticle, virtualParticle, VirtualParticle } from "./parts";
+import { quarks, Quark, bozons, Bozon, gluonFieldParticle, virtualParticle, AllQuarks, mezons } from "./parts";
 import { GluonField } from "../particle/GluonField";
 import { interaction } from "./interaction";
 import { protonPageCoordinates } from "../coordinates";
 import { cursor, CursorElement } from "../cursor";
 
-const drawParticle = (context: CanvasRenderingContext2D, point: Quark | Bozon | VirtualParticle) => {
+const drawParticle = (context: CanvasRenderingContext2D, point: Quark | Bozon | AllQuarks) => {
     context.fillStyle = `${point.color}`;
     context.beginPath();
     context.arc(point.coordinates.x, point.coordinates.y, point.size, 0, 2 * Math.PI);
@@ -29,7 +29,7 @@ const drawCursor = (context: CanvasRenderingContext2D, element: CursorElement, c
     context.moveTo(element.xStart + cursorCoord.xCoordinates, element.yStart + cursorCoord.yCoordinates)
     context.lineTo(element.xEnd + cursorCoord.xCoordinates, element.yEnd + cursorCoord.yCoordinates)
     context.strokeStyle = `#ffffff`
-    context.lineWidth = 2
+    context.lineWidth = 3
     context.stroke()
 }
 
@@ -53,6 +53,10 @@ export const renderElement = (ctx: CanvasRenderingContext2D | null | undefined, 
 
         for (let i = 0; i < virtualParticle.length; i++) {
             drawParticle(ctx, virtualParticle[i])
+        }
+
+        for (let i = 0; i < mezons.length; i++) {
+            drawParticle(ctx, mezons[i])
         }
 
         for (let i = 0; i < cursor.length; i++) {
