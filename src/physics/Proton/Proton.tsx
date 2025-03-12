@@ -7,10 +7,10 @@ import { renderElement } from "./logic/renderElement";
 import { protonPageCoordinates } from "./coordinates";
 import Physics from "../Physics";
 import Button from "../../shared/Button";
+import Explanation from "./Explanation/Explanation";
 import ArrowBackButton from "../../shared/ButtonIcons/ArrowBackButton";
 import ArrowStartButton from "../../shared/ButtonIcons/ArrowStartButton";
 import PauseButton from "../../shared/ButtonIcons/PauseButton";
-import CrossButton from "../../shared/ButtonIcons/CrossButton";
 import ExplanationButton from "../../shared/ButtonIcons/ExplanationButton";
 
 const useStyles = createUseStyles({
@@ -75,8 +75,7 @@ const Proton: FC = () => {
                 <Button isNav={true} icon={<ArrowBackButton />} label={"На раздел выше"} onClick={() => dispatch(setWindow(<Physics />))} />
                 <Button onClick={() => setIsWork(true)} icon={<ArrowStartButton />} label={"Запустить симуляцию"} />
                 <Button onClick={() => setIsWork(false)} icon={<PauseButton />} label={"Остановить симуляцию"} />
-                <Button icon={<CrossButton />} label={"Перезапустить симуляцию"} />
-                <Button icon={<ExplanationButton />} label={"[ Объяснение ]"}/>
+                <Button icon={<ExplanationButton />} label={"[ Объяснение ]"} onClick={() => dispatch(setWindow(<Explanation />))}/>
             </div>
         </div>
     )

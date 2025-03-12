@@ -27,25 +27,26 @@ export const interaction = (virtualParticle: AllQuarks[], bozons: Bozon[], quark
                 } else {
                     const speedX = Math.random() * 14 - 7
                     const speedY = Math.random() * 14 - 7
+                    console.log(quarks[i].colorQuark, quarks[i].anticolorQuark)
                     mezons.push(new U_quark(
                         {
-                            x: quarks[i].coordinates.x + Math.random() * 100 - 50,
-                            y: quarks[i].coordinates.y + Math.random() * 100 - 50
-                        },
-                        quarks[i].colorQuark,
-                        10,
-                        speedX,
-                        speedY
+                                x: quarks[i].coordinates.x + Math.random() * 100 - 50,
+                                y: quarks[i].coordinates.y + Math.random() * 100 - 50
+                            },
+                            quarks[i].colorQuark,
+                            10,
+                            speedX,
+                            speedY
                     ))
                     mezons.push(new Anti_U_quark(
                         {
-                            x: quarks[i].coordinates.x + Math.random() * 100 - 50,
-                            y: quarks[i].coordinates.y + Math.random() * 100 - 50
-                        },
-                        quarks[i].anticolorQuark,
-                        10,
-                        speedX,
-                        speedY
+                                x: quarks[i].coordinates.x + Math.random() * 100 - 50,
+                                y: quarks[i].coordinates.y + Math.random() * 100 - 50
+                            },
+                            quarks[i].anticolorQuark,
+                            10,
+                            speedX,
+                            speedY
                     ))
                 }
             }
