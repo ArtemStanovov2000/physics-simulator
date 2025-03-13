@@ -48,7 +48,8 @@ const useStyles = createUseStyles({
         fontSize: "24px",
         margin: "30px 0 10px 0",
         textIndent: "35px",
-        lineHeight: "30px"
+        lineHeight: "30px",
+        textAlign: "justify"
     },
     canvas: {
         marginTop: "30px"

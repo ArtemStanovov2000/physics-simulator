@@ -29,6 +29,7 @@ const useStyles = createUseStyles({
         margin: "0",
         textIndent: "35px",
         lineHeight: "25px",
+        textAlign: "justify"
     }
 });
 
