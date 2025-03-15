@@ -2,7 +2,7 @@ import { quarks, Quark, bozons, Bozon, gluonFieldParticle, virtualParticle, AllQ
 import { GluonField } from "../particle/GluonField";
 import { interaction } from "./interaction";
 import { protonPageCoordinates } from "../coordinates";
-import { cursor, CursorElement } from "../cursor";
+import { cursor, CursorElement } from "../../../shared/cursor/cursor";
 
 const drawParticle = (context: CanvasRenderingContext2D, point: Quark | Bozon | AllQuarks) => {
     context.fillStyle = `${point.color}`;

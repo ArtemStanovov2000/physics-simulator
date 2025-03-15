@@ -55,19 +55,19 @@ const useStyles = createUseStyles({
     canvas: {
         marginTop: "30px"
     },
-    quarksList: {
+    particleList: {
         margin: "0",
         padding: "0",
         marginTop: "40px",
         marginBottom: "40px",
     },
-    quarkBlock: {
+    particleBlock: {
         display: "flex",
         alignItems: "center",
         marginTop: "2px",
         marginBottom: "2px"
     },
-    quark: {
+    particle: {
         color: "rgb(255, 255, 255)",
         fontFamily: "Gilroy",
         fontSize: "30px",
@@ -80,7 +80,7 @@ const useStyles = createUseStyles({
         borderRadius: "50%",
         marginRight: "15px"
     },
-    quarkDesc: {
+    particleDesc: {
         color: "rgb(255, 215, 188)",
         fontFamily: "Gilroy",
         fontSize: "20px",
@@ -91,6 +91,13 @@ const useStyles = createUseStyles({
         height: "700px",
         backgroundSize: "100% 100%",
         backgroundImage: `url(${image.proton})`,
+    },
+    seasQuarkImg: {
+        marginTop: "50px",
+        width: "100%",
+        height: "700px",
+        backgroundSize: "100% 100%",
+        backgroundImage: `url(${image.seasQuark})`,
     }
 });
 
@@ -151,30 +158,30 @@ const Explanation: FC = () => {
                 <div className={classes.textBox}>
                     <h3 className={classes.title}>Кварки</h3>
                     <p className={classes.text}>Все 6 ароматов кварков</p>
-                    <ul style={{ marginTop: "20px" }} className={classes.quarksList}>
-                        <li className={classes.quarkBlock}>
-                            <div className={classes.quark}>u</div>
-                            <p className={classes.quarkDesc}>- верхний кварк</p>
+                    <ul style={{ marginTop: "20px" }} className={classes.particleList}>
+                        <li className={classes.particleBlock}>
+                            <div className={classes.particle}>u</div>
+                            <p className={classes.particleDesc}>- верхний кварк</p>
                         </li>
-                        <li className={classes.quarkBlock}>
-                            <div className={classes.quark}>d</div>
-                            <p className={classes.quarkDesc}>- нижний кварк</p>
+                        <li className={classes.particleBlock}>
+                            <div className={classes.particle}>d</div>
+                            <p className={classes.particleDesc}>- нижний кварк</p>
                         </li>
-                        <li className={classes.quarkBlock}>
-                            <div className={classes.quark}>c</div>
-                            <p className={classes.quarkDesc}>- очарованный кварк</p>
+                        <li className={classes.particleBlock}>
+                            <div className={classes.particle}>c</div>
+                            <p className={classes.particleDesc}>- очарованный кварк</p>
                         </li>
-                        <li className={classes.quarkBlock}>
-                            <div className={classes.quark}>s</div>
-                            <p className={classes.quarkDesc}>- странный кварк</p>
+                        <li className={classes.particleBlock}>
+                            <div className={classes.particle}>s</div>
+                            <p className={classes.particleDesc}>- странный кварк</p>
                         </li>
-                        <li className={classes.quarkBlock}>
-                            <div className={classes.quark}>t</div>
-                            <p className={classes.quarkDesc}>- истинный кварк</p>
+                        <li className={classes.particleBlock}>
+                            <div className={classes.particle}>t</div>
+                            <p className={classes.particleDesc}>- истинный кварк</p>
                         </li>
-                        <li className={classes.quarkBlock}>
-                            <div className={classes.quark}>b</div>
-                            <p className={classes.quarkDesc}>- прелестный кварк</p>
+                        <li className={classes.particleBlock}>
+                            <div className={classes.particle}>b</div>
+                            <p className={classes.particleDesc}>- прелестный кварк</p>
                         </li>
                     </ul>
                     <p className={classes.text}>Кварки составляют нашу материю, но сами при этом устроены очень необычно.</p>
@@ -184,18 +191,18 @@ const Explanation: FC = () => {
                     <p className={classes.text}>Во-вторых, хоть мы не знаем это точно, но в квантовой механике кварки представляют собой "частицы" нулевого размера т.е само понятие размер тут не применимо.
                         Опять же, получается, что и тут мы имеем ограничение, потому что нельзя показать на экране точку нулевого размера.
                     </p>
-                    <ul className={classes.quarksList}>
-                        <li className={classes.quarkBlock}>
-                            <div style={{ backgroundColor: "#d54040" }} className={classes.quark}>u</div>
-                            <p className={classes.quarkDesc}>- верхний кварк</p>
+                    <ul className={classes.particleList}>
+                        <li className={classes.particleBlock}>
+                            <div style={{ backgroundColor: "#d54040" }} className={classes.particle}>u</div>
+                            <p className={classes.particleDesc}>- верхний кварк</p>
                         </li>
-                        <li className={classes.quarkBlock}>
-                            <div style={{ backgroundColor: "#40d540" }} className={classes.quark}>u</div>
-                            <p className={classes.quarkDesc}>- верхний кварк</p>
+                        <li className={classes.particleBlock}>
+                            <div style={{ backgroundColor: "#40d540" }} className={classes.particle}>u</div>
+                            <p className={classes.particleDesc}>- верхний кварк</p>
                         </li>
-                        <li className={classes.quarkBlock}>
-                            <div style={{ backgroundColor: "#4040d5" }} className={classes.quark}>u</div>
-                            <p className={classes.quarkDesc}>- верхний кварк</p>
+                        <li className={classes.particleBlock}>
+                            <div style={{ backgroundColor: "#4040d5" }} className={classes.particle}>u</div>
+                            <p className={classes.particleDesc}>- верхний кварк</p>
                         </li>
                     </ul>
                     <p className={classes.text}>Кварки обладают так называемым цветным зарядом. Это не то же самое, что электрический заряд, поскольку, во-первых, кварк обладает и электрическим зарядом тоже, а, во-вторых
@@ -205,18 +212,18 @@ const Explanation: FC = () => {
                     </p>
                     <p className={classes.text}>Каждый из 6 ароматов кварков может быть либо зеленым, либо синим, либо красным, обязательно одного из 3х цветов.
                     </p>
-                    <ul className={classes.quarksList}>
-                        <li className={classes.quarkBlock}>
-                            <div style={{ backgroundColor: "#40d5d5" }} className={classes.quark}>u</div>
-                            <p className={classes.quarkDesc}>- верхний антикварк</p>
+                    <ul className={classes.particleList}>
+                        <li className={classes.particleBlock}>
+                            <div style={{ backgroundColor: "#40d5d5" }} className={classes.particle}>u</div>
+                            <p className={classes.particleDesc}>- верхний антикварк</p>
                         </li>
-                        <li className={classes.quarkBlock}>
-                            <div style={{ backgroundColor: "#d540d5" }} className={classes.quark}>u</div>
-                            <p className={classes.quarkDesc}>- верхний антикварк</p>
+                        <li className={classes.particleBlock}>
+                            <div style={{ backgroundColor: "#d540d5" }} className={classes.particle}>u</div>
+                            <p className={classes.particleDesc}>- верхний антикварк</p>
                         </li>
-                        <li className={classes.quarkBlock}>
-                            <div style={{ backgroundColor: "#d5d540" }} className={classes.quark}>u</div>
-                            <p className={classes.quarkDesc}>- верхний антикварк</p>
+                        <li className={classes.particleBlock}>
+                            <div style={{ backgroundColor: "#d5d540" }} className={classes.particle}>u</div>
+                            <p className={classes.particleDesc}>- верхний антикварк</p>
                         </li>
                     </ul>
                     <p className={classes.text}>Так же каждый аромат кварка имеет своего партнера-антикварка. Их электрические и цветовые заряды противоположны. Соответветственно электрический заряд +2/3 становится -2/3, а красный цвет становится антикрасным.</p>
@@ -224,6 +231,55 @@ const Explanation: FC = () => {
                     <p className={classes.text}>Кварк подавляет случайные флуктуации глюонного поля, поэтому рядом с ним пространство действительно пустое в полном смысле этого слова. Эта способность есть не только у кварков,
                         но и любых других реальных частиц.
                     </p>
+                </div>
+                <div className={classes.textBox}>
+                    <h3 className={classes.title}>Бозоны</h3>
+                    <p className={classes.text}>Все виды бозонов слабого взаимодействия</p>
+                    <ul style={{ marginTop: "20px" }} className={classes.particleList}>
+                        <li className={classes.particleBlock}>
+                            <div className={classes.particle}>w<sup>+</sup></div>
+                            <p className={classes.particleDesc}>- W бозон с электрическим зарядом +1</p>
+                        </li>
+                        <li className={classes.particleBlock}>
+                            <div className={classes.particle}>w<sup>-</sup></div>
+                            <p className={classes.particleDesc}>- W бозон с электрическим зарядом -1</p>
+                        </li>
+                        <li className={classes.particleBlock}>
+                            <div className={classes.particle}>z<sup>0</sup></div>
+                            <p className={classes.particleDesc}>- Z бозон с цветным зарядом и с электрическим зарядом 0</p>
+                        </li>
+                    </ul>
+                    <p className={classes.text}>Все виды бозонов слабого взаимодействия</p>
+                    <p className={classes.text}>Z<sup>0</sup> бозон обладает цветовым зарядом. Опять же, важно уточнить, что само это понятие условно, это ни в коем случае не цвет самой частицы, а просто такое название.</p>
+                    <p className={classes.text}>Кварки находясь в глюонном поле спонтанно порождают бозоны переносящие цветовой заряд. Если цвет Z<sup>0</sup>-бозона красный+антизеленый, то в таком случае кварк испустивший
+                        его становится зеленым, а поглотивший этот бозон кварк станет красным. Аналогично если цвет Z<sup>0</sup>-бозона синий+антикрасный, то испутивший его кварк станет красным, а поглотивший его - синим.</p>
+                    <p className={classes.text}>W<sup>+</sup> и W<sup>-</sup> изменяет аромат и электрический заряд кварка. Например U-Кварк с зврядом +2/3 испустивший W<sup>+</sup> становится D-кварком с зарядом -1/3</p>
+                    <p className={classes.text}>Эти частицы - виртуальные, в том плане, что их предположительное время жизни составляет менее 10<sup>-25</sup> секунд. Их время жизни меньше, чем требуется, чтобы их зарегестрировать, а значит в данном случае сделать это невозможно.</p>
+                </div>
+                <div className={classes.textBox}>
+                    <h3 className={classes.title}>Морские кварки</h3>
+                    <ul style={{ marginTop: "20px" }} className={classes.particleList}>
+                        <li className={classes.particleBlock}>
+                            <div style={{ backgroundColor: "#d54040" }} className={classes.particle}>u</div>
+                            <div style={{ backgroundColor: "#40d5d5" }} className={classes.particle}>u</div>
+                            <p className={classes.particleDesc}>- пара кварк-антикварк красный-антикрасный</p>
+                        </li>
+                        <li className={classes.particleBlock}>
+                            <div style={{ backgroundColor: "#40d540" }} className={classes.particle}>u</div>
+                            <div style={{ backgroundColor: "#d540d5" }} className={classes.particle}>u</div>
+                            <p className={classes.particleDesc}>- пара кварк-антикварк зеленый-антизеленый</p>
+                        </li>
+                        <li className={classes.particleBlock}>
+                            <div style={{ backgroundColor: "#4040d5" }} className={classes.particle}>u</div>
+                            <div style={{ backgroundColor: "#d5d540" }} className={classes.particle}>u</div>
+                            <p className={classes.particleDesc}>- пара кварк-антикварк синий-антисиний</p>
+                        </li>
+                        <p className={classes.text}>Появляются прямо из вакуума внутри протона. Очень нестабильны, и в течении кратчайшего периода аннагилируют друг с другом.</p>
+                        <div className={classes.seasQuarkImg}></div>
+                        <p className={classes.text}>Чем быстрее движется протон, тем дольше живут морские кварки в системе внешнего наблюдателя. Так происходит потому что при приближении
+                            к скорости света время для объекта движется всё медленнее, и даже очень скоротечные события могут длиться значительное время.
+                        </p>
+                    </ul>
                 </div>
             </div>
         </div >

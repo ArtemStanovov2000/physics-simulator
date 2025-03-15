@@ -6,7 +6,7 @@ const OFFSET_VIRTUAL_PARTICLE = 100
 const RANDOM_OFFSET = 200
 
 export const createVirtualQuarks = (quarks: Quark[], virtualParticle: AllQuarks[]) => {
-    if (Math.random() < 0.1) {
+    if (Math.random() < 0.2) {
             const randonQuark = Math.floor(Math.random() * quarks.length)
             const color: Array<"red" | "blue" | "green"> = ["red", "blue", "green"]
             const anticolor: Array<"antired" | "antiblue" | "antigreen"> = ["antired", "antiblue", "antigreen"]
