@@ -4,7 +4,7 @@ import { RefObject } from "react";
 import { useDispatch } from "react-redux";
 import { setWindow } from "../../store/windowSlice";
 import { image } from "../../assets/image/image";
-import { createStartWindow } from "../utils/createStartWindow";
+import { createStartWindow } from "../../utils/createStartWindow";
 import { renderElementGravity } from "./logic/renderElementGravity";
 import { renderElementTidalForse } from "./logic/renderElementTidalForse";
 import Button from "../../shared/Button";

@@ -2,8 +2,10 @@ import { FC } from "react";
 import { createUseStyles } from "react-jss";
 import { useDispatch } from "react-redux";
 import { setWindow } from "./store/windowSlice";
-import Physics from "./physics/Physics";
 import { image } from "./assets/image/image";
+import Physics from "./physics/Physics";
+import Chemistry from "./chemistry/Chemistry";
+
 const useStyles = createUseStyles({
     main: {
         width: "100%",
@@ -44,7 +46,7 @@ const MainPage: FC = () => {
         <>
             <div className={classes.main}>
                 <a onClick={() => dispatch(setWindow(<Physics/>))} className={classes.cart}>Физика</a>
-                <a className={classes.cart}>Химия</a>
+                <a onClick={() => dispatch(setWindow(<Chemistry/>))} className={classes.cart}>Химия</a>
             </div>
         </>
     )

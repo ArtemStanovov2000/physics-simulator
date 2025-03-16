@@ -4,7 +4,7 @@ import { RefObject } from "react";
 import { useDispatch } from "react-redux";
 import { setWindow } from "../../../store/windowSlice";
 import { image } from "../../../assets/image/image";
-import { createStartWindow } from "../../utils/createStartWindow";
+import { createStartWindow } from "../../../utils/createStartWindow";
 import { renderGluenField } from "./logic/renderGluenField";
 import Button from "../../../shared/Button";
 import Proton from "../Proton";
