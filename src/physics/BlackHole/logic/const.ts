@@ -1,0 +1,1 @@
+export const SPEED_OF_LIGHT = 3.3

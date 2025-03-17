@@ -1,9 +1,10 @@
 import { cursor, CursorElement } from "../../../shared/cursor/cursor";
 import { blackHolePageCoordinates } from "../coordinates";
-import { blackHole, BlackHole, grid, Grid } from "./parts";
-import { gravity } from "./gravity";
+import { blackHole, BlackHole, grid, Grid, particle } from "./parts";
+import { gravity, gravityElements } from "./gravity";
 import { deleteGrid } from "./deleteGrid";
 import { addGrid } from "./addGrid";
+import { elements } from "./parts";
 
 const drawParticle = (context: CanvasRenderingContext2D, point: Grid) => {
     context.fillStyle = `${point.color}`;
@@ -34,6 +35,14 @@ export const renderElement = (ctx: CanvasRenderingContext2D | null | undefined, 
             drawParticle(ctx, grid[i])
         }
 
+        for (let i = 0; i < elements.length; i++) {
+            elements[i].renderElement(ctx)
+        }
+
+        for (let i = 0; i < particle.length; i++) {
+            drawParticle(ctx, particle[i])
+        }
+
         drawBlackHole(ctx, blackHole)
 
         for (let i = 0; i < cursor.length; i++) {
@@ -44,7 +53,10 @@ export const renderElement = (ctx: CanvasRenderingContext2D | null | undefined, 
     
     if (isWork) {
         gravity(grid, blackHole)
+        gravity(particle, blackHole)
+        gravityElements(elements, blackHole)
         deleteGrid(grid, blackHole)
-        addGrid(grid, frameIndex)
+        deleteGrid(elements, blackHole)
+        addGrid(grid, frameIndex, window.innerWidth / 1.7)
     }
 }

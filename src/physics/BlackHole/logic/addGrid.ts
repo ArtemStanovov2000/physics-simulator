@@ -1,13 +1,18 @@
 import { Grid } from "./parts";
+import { elements } from "./parts";
+import { BaseRock } from "../baseRock/baseRock";
 
-export const addGrid = (array: Grid[], frameIndex: number) => {
+export const addGrid = (array: Grid[], frameIndex: number, radius: number) => {
     if (frameIndex % 100 === 0) {
-        for (let j = -900; j < window.innerWidth + 900; j += 14) {
+        const LENGTH_SPACE = 15
+        const countArc = Math.floor(radius * 2 * Math.PI / LENGTH_SPACE)
+    
+        for (let i = 0; i < countArc; i++) {
             array.push({
                 color: "#353535",
                 coordinates: {
-                    x: j,
-                    y: -300
+                    x: Math.cos(i / (radius / LENGTH_SPACE)) * radius + window.innerWidth / 2,
+                    y: Math.sin(i / (radius / LENGTH_SPACE)) * radius + window.innerHeight / 2
                 },
                 size: 2,
                 speedY: 0,
@@ -15,38 +20,21 @@ export const addGrid = (array: Grid[], frameIndex: number) => {
             })
         }
 
-        for (let j = -900; j < window.innerWidth + 900; j += 14) {
-            array.push({
-                color: "#353535",
-                coordinates: {
-                    x: j,
-                    y: window.innerHeight + 300
-                },
-                size: 2,
-                speedY: 0,
-                speedX: 0
-            })
-        }
+        elements.push(
+            new BaseRock({x: 20, y: 20})
+        )
+    }
 
-        for (let j = -900; j < window.innerHeight + 900; j += 14) {
+    if (frameIndex % 10 === 0) {
+        const LENGTH_SPACE = 200
+        const countArc = Math.floor(radius * 2 * Math.PI / LENGTH_SPACE)
+    
+        for (let i = 0; i < countArc; i++) {
             array.push({
                 color: "#353535",
                 coordinates: {
-                    x: -300,
-                    y: j
-                },
-                size: 2,
-                speedY: 0,
-                speedX: 0
-            })
-        }
-
-        for (let j = -900; j < window.innerHeight + 900; j += 14) {
-            array.push({
-                color: "#353535",
-                coordinates: {
-                    x: window.innerWidth + 300,
-                    y: j
+                    x: Math.cos(i / (radius / LENGTH_SPACE)) * radius + window.innerWidth / 2,
+                    y: Math.sin(i / (radius / LENGTH_SPACE)) * radius + window.innerHeight / 2
                 },
                 size: 2,
                 speedY: 0,
