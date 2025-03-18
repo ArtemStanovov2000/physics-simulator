@@ -1,6 +1,11 @@
-import { ChemicalElement } from "../../elements/element"
+import { ChemicalElement, Hudrogen } from "../../elements/element"
 
-export const quarks: ChemicalElement[] = []
+export const particles: ChemicalElement[] = []
+
+particles.push(
+    new Hudrogen({x: 200, y: 200})
+)
+
 
 
 

@@ -1,7 +1,7 @@
 import MainPage from "./MainPage"
 import { createUseStyles } from "react-jss";
 import { useSelector } from "react-redux";
-import BlackHole from "./physics/BlackHole/BlackHole";
+import OxygenIon from "./chemistry/Playground/OxygenIon";
 import "./index.css"
 
 const useStyles = createUseStyles({
@@ -17,7 +17,7 @@ function App() {
 
   return (
     <div className={classes.app}>
-      {storeWindow === null ? <BlackHole/> : storeWindow}
+      {storeWindow === null ? <OxygenIon/> : storeWindow}
     </div>
   )
 }

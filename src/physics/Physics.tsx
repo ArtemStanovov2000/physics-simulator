@@ -6,7 +6,6 @@ import { setWindow } from "../store/windowSlice";
 import { image } from "../assets/image/image";
 import TheRocheLimit from "./theRocheLimit/TheRocheLimit";
 import Proton from "./Proton/Proton";
-import BlackHole from "./BlackHole/BlackHole";
 import MainPage from "../MainPage";
 import Cart from "../shared/Cart";
 
@@ -93,7 +92,6 @@ const Physics: FC = () => {
             <a onClick={() => dispatch(setWindow(<MainPage />))} className={classes.mainCart}>На раздел выше</a>
             {time > 10 ? <Cart onClick={() => dispatch(setWindow(<TheRocheLimit />))} label={"Предел Роша"}/> : null}
             {time > 20 ? <Cart onClick={() => dispatch(setWindow(<Proton />))} label={"Протон"}/> : null}
-            {time > 30 ? <Cart onClick={() => dispatch(setWindow(<BlackHole />))} label={"Черная дыра"}/> : null}
         </div>
     )
 }
