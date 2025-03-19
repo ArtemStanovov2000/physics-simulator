@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { setWindow } from "../store/windowSlice";
 import { image } from "../assets/image/image";
 import MainPage from "../MainPage";
-import OxygenIon from "./Playground/OxygenIon";
+import Atom from "./Atom/Atom";
 import Cart from "../shared/Cart";
 
 const useStyles = createUseStyles({
@@ -89,7 +89,7 @@ const Chemistry: FC = () => {
     return (
         <div className={classes.main}>
             <a onClick={() => dispatch(setWindow(<MainPage />))} className={classes.mainCart}>На раздел выше</a>
-            {time > 10 ? <Cart onClick={() => dispatch(setWindow(<OxygenIon />))} label={"Ион кислорода"}/> : null}
+            {time > 10 ? <Cart onClick={() => dispatch(setWindow(<Atom />))} label={"Атом"}/> : null}
         </div>
     )
 }

@@ -1,17 +1,15 @@
 import { cursor, CursorElement } from "../../../shared/cursor/cursor";
 import { playgroundPageCoordinates } from "../coordinates";
-import { particles } from "./parts";
-import { ChemicalElement } from "../../elements/element";
+import { fermions, electrons } from "./parts";
+import { Proton, Neutron, Electron } from "../../elements/element";
+import { createElectronOrbital } from "./createElectronOrbital";
+import { createFermions } from "./createFermions";
 
-const drawParticle = (context: CanvasRenderingContext2D, point: ChemicalElement) => {
+const drawParticle = (context: CanvasRenderingContext2D, point:  Neutron | Proton | Electron) => {
     context.fillStyle = `${point.color}`;
     context.beginPath();
     context.arc(point.coordinates.x, point.coordinates.y, point.size, 0, 2 * Math.PI);
     context.fill();
-
-    context.font = `${point.label.size}px Verdana`;
-    context.fillStyle = `${"#ffffff"}`;
-    context.fillText(`${point.label.label}`, point.coordinates.x - point.label.offsetX, point.coordinates.y + point.label.offsetY);
 }
 
 const drawCursor = (context: CanvasRenderingContext2D, element: CursorElement, cursorCoord: {xCoordinates: number, yCoordinates: number}) => {
@@ -25,8 +23,26 @@ const drawCursor = (context: CanvasRenderingContext2D, element: CursorElement, c
 
 export const renderElement = (ctx: CanvasRenderingContext2D | null | undefined, isWork: boolean) => {
     if (ctx) {
-        for (let i = 0; i < particles.length; i++) {
-            drawParticle(ctx, particles[i])
+        for (let i = electrons.length; i > 0; i--) {
+            electrons.pop()
+        }
+
+        for (let i = fermions.length; i > 0; i--) {
+            fermions.pop()
+        }
+
+        createElectronOrbital(35, 2, electrons)
+        createElectronOrbital(67, 8, electrons)
+        createElectronOrbital(151, 18, electrons)
+        createElectronOrbital(269, 8, electrons)
+        createFermions(26, 30, fermions)
+
+        for (let i = 0; i < fermions.length; i++) {
+            drawParticle(ctx, fermions[i])
+        }
+
+        for (let i = 0; i < electrons.length; i++) {
+            drawParticle(ctx, electrons[i])
         }
 
         for (let i = 0; i < cursor.length; i++) {
@@ -35,6 +51,5 @@ export const renderElement = (ctx: CanvasRenderingContext2D | null | undefined, 
     }
 
     if (isWork) {
-        //interaction()
     }
 }

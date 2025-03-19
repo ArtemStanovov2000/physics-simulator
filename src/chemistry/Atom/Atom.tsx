@@ -29,7 +29,7 @@ const useStyles = createUseStyles({
     }
 });
 
-const OxygenIon: FC = () => {
+const Atom: FC = () => {
     const canvasRef: RefObject<HTMLCanvasElement | null> = useRef<HTMLCanvasElement>(null)
     const [frameIndex, setFrameIndex] = useState(1);
     const [isWork, setIsWork] = useState(true);
@@ -80,4 +80,4 @@ const OxygenIon: FC = () => {
     )
 }
 
-export default OxygenIon
+export default Atom

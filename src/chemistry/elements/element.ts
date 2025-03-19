@@ -1,38 +1,70 @@
-export class ChemicalElement {
+export class Proton {
+    mass: number
+    size: number
+    color: string
+    speedX: number
+    speedY: number
     coordinates: {
         x: number
         y: number
     }
-    label: {
-        label: string,
-        size: number,
-        offsetX: number
-        offsetY: number
+
+    constructor(x: number, y: number) {
+        this.mass = 1
+        this.size = 5
+        this.color = "#d54040"
+        this.coordinates = {x: x, y: y}
+        this.speedX = 0
+        this.speedY = 0
     }
+
+    move() {
+        this.coordinates.x += this.speedX
+        this.coordinates.y += this.speedY
+    }
+}
+
+export class Neutron {
     mass: number
-    charge: number
-    color: string
     size: number
-    electrons: number[]
-    ionizationEnergy: number
-    degreeOxidation: number[]
+    color: string
+    speedX: number
+    speedY: number
+    coordinates: {
+        x: number
+        y: number
+    }
 
-    constructor(coordinates: { x: number, y: number }, label: { label: string, size: number, offsetX: number, offsetY: number }, mass: number, charge: number, color: string, size: number, electrons: number[], ionizationEnergy: number, degreeOxidation: number[]) {
-        this.coordinates = coordinates
-        this.label = label
-        this.mass = mass
-        this.charge = charge
-        this.color = color
-        this.size = size
-        this.electrons = electrons
-        this.ionizationEnergy = ionizationEnergy
-        this.degreeOxidation = degreeOxidation
+    constructor(x: number, y: number) {
+        this.mass = 1
+        this.size = 5
+        this.color = "#606060"
+        this.coordinates = {x: x, y: y}
+        this.speedX = 0
+        this.speedY = 0
+    }
+
+    move() {
+        this.coordinates.x += this.speedX
+        this.coordinates.y += this.speedY
     }
 }
 
-export class Hudrogen extends ChemicalElement {
-    constructor(coordinates: { x: number, y: number }) {
-        super(coordinates, { label: "H", size: 20, offsetX: 7, offsetY: 7}, 1, 1, "#909090", 16, [1], 13.59, [-1, 0, 1])
+export class Electron {
+    mass: number
+    size: number
+    color: string
+    coordinates: {
+        x: number
+        y: number
+    }
+
+    constructor(x: number, y: number) {
+        this.mass = 1
+        this.size = 2
+        this.color = "#909090"
+        this.coordinates = {x: x, y: y}
     }
 }
+
 
