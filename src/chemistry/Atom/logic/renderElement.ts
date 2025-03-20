@@ -1,5 +1,3 @@
-import { cursor, CursorElement } from "../../../shared/cursor/cursor";
-import { playgroundPageCoordinates } from "../coordinates";
 import { fermions, electrons } from "./parts";
 import { Proton, Neutron, Electron } from "../../elements/element";
 import { createElectronOrbital } from "./createElectronOrbital";
@@ -12,16 +10,7 @@ const drawParticle = (context: CanvasRenderingContext2D, point:  Neutron | Proto
     context.fill();
 }
 
-const drawCursor = (context: CanvasRenderingContext2D, element: CursorElement, cursorCoord: {xCoordinates: number, yCoordinates: number}) => {
-    context.beginPath()
-    context.moveTo(element.xStart + cursorCoord.xCoordinates, element.yStart + cursorCoord.yCoordinates)
-    context.lineTo(element.xEnd + cursorCoord.xCoordinates, element.yEnd + cursorCoord.yCoordinates)
-    context.strokeStyle = `#ffffff`
-    context.lineWidth = 3
-    context.stroke()
-}
-
-export const renderElement = (ctx: CanvasRenderingContext2D | null | undefined, isWork: boolean) => {
+export const renderElement = (ctx: CanvasRenderingContext2D | null | undefined, isWork: boolean, electronList: number[], protonCount: number, neutronCount: number) => {
     if (ctx) {
         for (let i = electrons.length; i > 0; i--) {
             electrons.pop()
@@ -31,11 +20,12 @@ export const renderElement = (ctx: CanvasRenderingContext2D | null | undefined, 
             fermions.pop()
         }
 
-        createElectronOrbital(35, 2, electrons)
-        createElectronOrbital(67, 8, electrons)
-        createElectronOrbital(151, 18, electrons)
-        createElectronOrbital(269, 8, electrons)
-        createFermions(26, 30, fermions)
+        for (let i = 0; i < electronList.length; i++) {
+            const distance = [35, 70, 105, 140, 175, 210, 245]
+            createElectronOrbital(distance[i], electronList[i], electrons)
+        }
+
+        createFermions(protonCount, neutronCount, fermions)
 
         for (let i = 0; i < fermions.length; i++) {
             drawParticle(ctx, fermions[i])
@@ -43,10 +33,6 @@ export const renderElement = (ctx: CanvasRenderingContext2D | null | undefined, 
 
         for (let i = 0; i < electrons.length; i++) {
             drawParticle(ctx, electrons[i])
-        }
-
-        for (let i = 0; i < cursor.length; i++) {
-            drawCursor(ctx, cursor[i], playgroundPageCoordinates.getCoordinates())
         }
     }
 
