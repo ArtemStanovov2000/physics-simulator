@@ -4,9 +4,8 @@ import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { setWindow } from "../store/windowSlice";
 import { image } from "../assets/image/image";
+import Epidemic from "./Epidemic/Epidemic";
 import MainPage from "../MainPage";
-import Atom from "./Atom/Atom";
-import AggregateState from "./AggregateState/Atom";
 import Cart from "../shared/Cart";
 
 const useStyles = createUseStyles({
@@ -74,7 +73,7 @@ const useStyles = createUseStyles({
     }
 });
 
-const Chemistry: FC = () => {
+const Biology: FC = () => {
     const [time, setTime] = useState(0);
     const classes = useStyles()
     const dispatch = useDispatch()
@@ -90,10 +89,9 @@ const Chemistry: FC = () => {
     return (
         <div className={classes.main}>
             <a onClick={() => dispatch(setWindow(<MainPage />))} className={classes.mainCart}>На раздел выше</a>
-            {time > 10 ? <Cart onClick={() => dispatch(setWindow(<Atom />))} label={"Атом"}/> : null}
-            {time > 20 ? <Cart onClick={() => dispatch(setWindow(<AggregateState />))} label={"Агрегатное состояние"}/> : null}
+            {time > 10 ? <Cart label={"Эпидемия"} onClick={() => dispatch(setWindow(<Epidemic/>))}/> : null}
         </div>
     )
 }
 
-export default Chemistry
+export default Biology

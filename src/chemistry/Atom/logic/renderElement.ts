@@ -10,7 +10,7 @@ const drawParticle = (context: CanvasRenderingContext2D, point:  Neutron | Proto
     context.fill();
 }
 
-export const renderElement = (ctx: CanvasRenderingContext2D | null | undefined, isWork: boolean, electronList: number[], protonCount: number, neutronCount: number) => {
+export const renderElement = (ctx: CanvasRenderingContext2D | null | undefined, electronList: number[], protonCount: number, neutronCount: number) => {
     if (ctx) {
         for (let i = electrons.length; i > 0; i--) {
             electrons.pop()
@@ -34,8 +34,5 @@ export const renderElement = (ctx: CanvasRenderingContext2D | null | undefined, 
         for (let i = 0; i < electrons.length; i++) {
             drawParticle(ctx, electrons[i])
         }
-    }
-
-    if (isWork) {
     }
 }

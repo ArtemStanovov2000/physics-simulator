@@ -4,19 +4,17 @@ import { useDispatch } from "react-redux";
 import { setWindow } from "../../store/windowSlice";
 import { createStartWindow } from "../../utils/createStartWindow";
 import { renderElement } from "./logic/renderElement";
-import { playgroundPageCoordinates } from "./coordinates";
 import { listElements } from "./logic/listElements";
 import { AtomParams } from "./logic/listElements";
 import Chemistry from "../Chemistry";
 import Button from "../../shared/Button";
 import ArrowBackButton from "../../shared/ButtonIcons/ArrowBackButton";
-import ArrowStartButton from "../../shared/ButtonIcons/ArrowStartButton";
-import PauseButton from "../../shared/ButtonIcons/PauseButton";
 import ExplanationButton from "../../shared/ButtonIcons/ExplanationButton";
 
 const useStyles = createUseStyles({
     page: {
-        position: "relative"
+        position: "relative",
+        height: `${window.innerHeight}px`
     },
     canvas: {
         position: "absolute",
@@ -33,7 +31,7 @@ const useStyles = createUseStyles({
         flexWrap: "wrap",
         position: "absolute",
         justifyContent: "center",
-        top: `${window.innerHeight - 150}px`,
+        bottom: `10px`,
         width: "auto",
         gap: "4px",
         padding: "0 20px 10px 20px"
@@ -56,16 +54,58 @@ const useStyles = createUseStyles({
             cursor: "pointer",
             color: "#d2de52",
         },
+    },
+    params: {
+        position: "absolute",
+        display: "flex",
+        flexDirection: "column",
+        gap: "18px",
+        right: "30px",
+        top: "30px"
+    },
+    paramsTitle: {
+        color: "#d2de52",
+        display: "flex",
+        justifyContent: "center",
+        margin: 0,
+        fontFamily: "gilroy",
+        padding: "10px 16px",
+    },
+    paramsItem: {
+        color: "rgb(255, 255, 255)",
+        fontFamily: "gilroy",
+        margin: 0,
+        width: "430px",
+        display: "flex",
+        justifyContent: "space-between"
+    },
+    paramsItemValue: {
+        color: "#d2de52",
+        borderRadius: "5px",
+        fontFamily: "gilroy",
+        fontSize: "20px",
+        fontWeight: "200",
+        margin: 0,
+    },
+    paramsItemDesc: {
+        color: "#ffffff",
+        borderRadius: "5px",
+        fontFamily: "gilroy",
+        fontSize: "20px",
+        fontWeight: "200",
+        margin: 0,
     }
 });
 
 const Atom: FC = () => {
     const canvasRef: RefObject<HTMLCanvasElement | null> = useRef<HTMLCanvasElement>(null)
     const [frameIndex, setFrameIndex] = useState(1);
-    const [isWork, setIsWork] = useState(true);
-    const [electrons, setElectrons] = useState([1, 0]);
+    const [electrons, setElectrons] = useState([1]);
     const [protonCount, setProtonCount] = useState(1);
-    const [neutronCount, setNeutronCount] = useState(1);
+    const [name, setName] = useState("H");
+    const [label, setLabel] = useState("Водород");
+    const [mass, setMass] = useState(1);
+    const [neutronCount, setNeutronCount] = useState(0);
     const classes = useStyles()
     const dispatch = useDispatch()
 
@@ -82,39 +122,55 @@ const Atom: FC = () => {
         const canvas: HTMLCanvasElement | null = canvasRef.current;
         const ctx: CanvasRenderingContext2D | null | undefined = canvas?.getContext('2d')
         createStartWindow(ctx, window.innerWidth, window.innerHeight)
-        renderElement(ctx, isWork, electrons, protonCount, neutronCount)
+        renderElement(ctx, electrons, protonCount, neutronCount)
     }, [frameIndex])
-
-    const onMouseMove = (e: any) => {
-        playgroundPageCoordinates.setCoordinates(
-            e.clientX - e.target.offsetLeft,
-            e.clientY - e.target.offsetTop,
-        )
-    }
 
     const setParams = (element: AtomParams) => {
         setElectrons(element.electrons)
         setProtonCount(element.number)
         setNeutronCount(element.neutronCount)
+        setMass(element.mass)
+        setName(element.name)
+        setLabel(element.label)
     }
 
     return (
         <div tabIndex={0} className={classes.page}>
             <canvas
                 ref={canvasRef}
-                onMouseMove={onMouseMove}
                 width={window.innerWidth}
                 height={window.innerHeight}
                 className={classes.canvas}>
             </canvas>
             <div className={classes.nav}>
                 <Button isNav={true} icon={<ArrowBackButton />} label={"На раздел выше"} onClick={() => dispatch(setWindow(<Chemistry />))} />
-                <Button onClick={() => setIsWork(true)} icon={<ArrowStartButton />} label={"Запустить симуляцию"} />
-                <Button onClick={() => setIsWork(false)} icon={<PauseButton />} label={"Остановить симуляцию"} />
                 <Button icon={<ExplanationButton />} label={"[ Объяснение ]"} />
             </div>
             <div className={classes.elementList}>
-                {listElements.map((element, index) => <button onClick={() => fff()} key={index} className={classes.element}>{element.name}</button>)}
+                {listElements.map((element, index) => <button onClick={() => setParams(element)} key={index} className={classes.element}>{element.name}</button>)}
+            </div>
+            <div className={classes.params}>
+                <h3 className={classes.paramsTitle}>Параметры атома</h3>
+                <div className={classes.paramsItem}>
+                    <p className={classes.paramsItemDesc}>Назвавание элемента - </p>
+                    <p className={classes.paramsItemValue}>{label}</p>
+                </div>
+                <div className={classes.paramsItem}>
+                    <p className={classes.paramsItemDesc}>Обозначение элемента - </p>
+                    <p className={classes.paramsItemValue}>{name}</p>
+                </div>
+                <div className={classes.paramsItem}>
+                    <p className={classes.paramsItemDesc}>Атомный номер - </p>
+                    <p className={classes.paramsItemValue}>{protonCount}</p>
+                </div>
+                <div className={classes.paramsItem}>
+                    <p className={classes.paramsItemDesc}>Электронные оболочки - </p>
+                    <p className={classes.paramsItemValue}>{electrons.join(", ")}</p>
+                </div>
+                <div className={classes.paramsItem}>
+                    <p className={classes.paramsItemDesc}>Атомная масса, а.е.м. - </p>
+                    <p className={classes.paramsItemValue}>{mass}</p>
+                </div>
             </div>
         </div>
     )

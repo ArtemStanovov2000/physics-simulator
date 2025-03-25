@@ -5,6 +5,7 @@ import { setWindow } from "./store/windowSlice";
 import { image } from "./assets/image/image";
 import Physics from "./physics/Physics";
 import Chemistry from "./chemistry/Chemistry";
+import Biology from "./biology/Biology";
 
 const useStyles = createUseStyles({
     main: {
@@ -47,6 +48,7 @@ const MainPage: FC = () => {
             <div className={classes.main}>
                 <a onClick={() => dispatch(setWindow(<Physics/>))} className={classes.cart}>Физика</a>
                 <a onClick={() => dispatch(setWindow(<Chemistry/>))} className={classes.cart}>Химия</a>
+                <a onClick={() => dispatch(setWindow(<Biology/>))} className={classes.cart}>Биология</a>
             </div>
         </>
     )
