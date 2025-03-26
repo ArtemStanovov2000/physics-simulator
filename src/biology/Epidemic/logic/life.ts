@@ -25,7 +25,7 @@ export const life = (parts: Particle[]) => {
 
         for (let j = 0; j < parts.length; j++) {
             const distanse = Math.sqrt(Math.pow((parts[i].x - parts[j].x), 2) + Math.pow((parts[i].y - parts[j].y), 2))
-            if(distanse < 4 && parts[i].isSick === "sick") {
+            if(distanse < 5 && parts[i].isSick === "sick") {
                 parts[j].color = "#ff5252"
                 parts[j].isSick = "sick"
                 parts[j].size = 3

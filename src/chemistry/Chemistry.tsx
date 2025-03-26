@@ -6,7 +6,6 @@ import { setWindow } from "../store/windowSlice";
 import { image } from "../assets/image/image";
 import MainPage from "../MainPage";
 import Atom from "./Atom/Atom";
-import AggregateState from "./AggregateState/Atom";
 import Cart from "../shared/Cart";
 
 const useStyles = createUseStyles({
@@ -91,7 +90,6 @@ const Chemistry: FC = () => {
         <div className={classes.main}>
             <a onClick={() => dispatch(setWindow(<MainPage />))} className={classes.mainCart}>На раздел выше</a>
             {time > 10 ? <Cart onClick={() => dispatch(setWindow(<Atom />))} label={"Атом"}/> : null}
-            {time > 20 ? <Cart onClick={() => dispatch(setWindow(<AggregateState />))} label={"Агрегатное состояние"}/> : null}
         </div>
     )
 }

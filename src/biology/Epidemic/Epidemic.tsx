@@ -4,12 +4,12 @@ import { useDispatch } from "react-redux";
 import { setWindow } from "../../store/windowSlice";
 import { createStartWindow } from "../../utils/createStartWindow";
 import { renderElement } from "./logic/renderElement";
+import { restart } from "./logic/parts";
 import Biology from "../Biology";
 import Button from "../../shared/Button";
 import ArrowBackButton from "../../shared/ButtonIcons/ArrowBackButton";
 import ArrowStartButton from "../../shared/ButtonIcons/ArrowStartButton";
 import PauseButton from "../../shared/ButtonIcons/PauseButton";
-import ExplanationButton from "../../shared/ButtonIcons/ExplanationButton";
 import CrossButton from "../../shared/ButtonIcons/CrossButton";
 
 const useStyles = createUseStyles({
@@ -62,8 +62,7 @@ const Epidemic: FC = () => {
                 <Button isNav={true} icon={<ArrowBackButton />} label={"На раздел выше"} onClick={() => dispatch(setWindow(<Biology />))} />
                 <Button onClick={() => setIsWork(true)} icon={<ArrowStartButton />} label={"Запустить симуляцию"} />
                 <Button onClick={() => setIsWork(false)} icon={<PauseButton />} label={"Остановить симуляцию"} />
-                <Button icon={<CrossButton />} label={"Перезапустить симуляцию"} />
-                <Button icon={<ExplanationButton />} label={"[ Объяснение ]"}/>
+                <Button icon={<CrossButton />} onClick={() => restart()} label={"Перезапустить симуляцию"} />
             </div>
         </div>
     )

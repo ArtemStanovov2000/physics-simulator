@@ -1,7 +1,7 @@
 import MainPage from "./MainPage"
 import { createUseStyles } from "react-jss";
 import { useSelector } from "react-redux";
-import AggregateState from "./chemistry/AggregateState/Atom";
+import Atom from "./chemistry/Atom/Atom";
 import "./index.css"
 
 const useStyles = createUseStyles({
@@ -17,7 +17,7 @@ function App() {
 
   return (
     <div className={classes.app}>
-      {storeWindow === null ? <AggregateState/> : storeWindow}
+      {storeWindow === null ? <Atom/> : storeWindow}
     </div>
   )
 }
