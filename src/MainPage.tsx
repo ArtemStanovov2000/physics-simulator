@@ -6,6 +6,7 @@ import { image } from "./assets/image/image";
 import Physics from "./physics/Physics";
 import Chemistry from "./chemistry/Chemistry";
 import Biology from "./biology/Biology";
+import Geography from "./geography/Geography";
 
 const useStyles = createUseStyles({
     main: {
@@ -15,6 +16,7 @@ const useStyles = createUseStyles({
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        flexWrap: "wrap",
         gap: "40px"
     },
     cart: {
@@ -49,6 +51,7 @@ const MainPage: FC = () => {
                 <a onClick={() => dispatch(setWindow(<Physics/>))} className={classes.cart}>Физика</a>
                 <a onClick={() => dispatch(setWindow(<Chemistry/>))} className={classes.cart}>Химия</a>
                 <a onClick={() => dispatch(setWindow(<Biology/>))} className={classes.cart}>Биология</a>
+                <a onClick={() => dispatch(setWindow(<Geography/>))} className={classes.cart}>География</a>
             </div>
         </>
     )
