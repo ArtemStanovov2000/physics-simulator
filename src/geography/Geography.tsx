@@ -6,6 +6,7 @@ import { setWindow } from "../store/windowSlice";
 import { image } from "../assets/image/image";
 import MainPage from "../MainPage";
 import Cart from "../shared/Cart";
+import Tides from "./Tides/Tides";
 
 const useStyles = createUseStyles({
     main: {
@@ -88,8 +89,7 @@ const Geography: FC = () => {
     return (
         <div className={classes.main}>
             <a onClick={() => dispatch(setWindow(<MainPage />))} className={classes.mainCart}>На раздел выше</a>
-            {time > 10 ? <Cart label={"Недра"}/> : null}
-
+            {time > 20 ? <Cart onClick={() => dispatch(setWindow(<Tides />))} label={"Приливы"}/> : null}
         </div>
     )
 }
