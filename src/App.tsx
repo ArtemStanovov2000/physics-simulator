@@ -1,7 +1,7 @@
 import MainPage from "./MainPage"
 import { createUseStyles } from "react-jss";
 import { useSelector } from "react-redux";
-import Tides from "./geography/Tides/Tides";
+import Atom from "./chemistry/Atom/Atom";
 import "./index.css"
 
 const useStyles = createUseStyles({
@@ -17,7 +17,7 @@ function App() {
 
   return (
     <div className={classes.app}>
-      {storeWindow === null ? <Tides/> : storeWindow}
+      {storeWindow === null ? <Atom/> : storeWindow}
     </div>
   )
 }

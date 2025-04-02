@@ -6,6 +6,7 @@ import { createStartWindow } from "../../utils/createStartWindow";
 import { renderElement } from "./logic/renderElement";
 import { listElements } from "./logic/listElements";
 import { AtomParams } from "./logic/listElements";
+import Explanation from "./Explanation";
 import Chemistry from "../Chemistry";
 import Button from "../../shared/Button";
 import ArrowBackButton from "../../shared/ButtonIcons/ArrowBackButton";
@@ -144,7 +145,7 @@ const Atom: FC = () => {
             </canvas>
             <div className={classes.nav}>
                 <Button isNav={true} icon={<ArrowBackButton />} label={"На раздел выше"} onClick={() => dispatch(setWindow(<Chemistry />))} />
-                <Button icon={<ExplanationButton />} label={"[ Объяснение ]"} />
+                <Button icon={<ExplanationButton />} label={"[ Объяснение ]"} onClick={() => dispatch(setWindow(<Explanation />))}/>
             </div>
             <div className={classes.elementList}>
                 {listElements.map((element, index) => <button onClick={() => setParams(element)} key={index} className={classes.element}>{element.name}</button>)}

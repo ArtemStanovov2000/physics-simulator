@@ -1,8 +1,7 @@
 import { FC } from "react";
 import { createUseStyles } from "react-jss";
-import { useDispatch } from "react-redux";
-import { setWindow } from "./store/windowSlice";
 import { image } from "./assets/image/image";
+import { BrowserRouter, Link, Route, Routes } from "react-router";
 import Physics from "./physics/Physics";
 import Chemistry from "./chemistry/Chemistry";
 import Biology from "./biology/Biology";
@@ -43,17 +42,23 @@ const useStyles = createUseStyles({
 const MainPage: FC = () => {
     const classes = useStyles()
 
-    const dispatch = useDispatch()
-
     return (
-        <>
-            <div className={classes.main}>
-                <a onClick={() => dispatch(setWindow(<Physics/>))} className={classes.cart}>Физика</a>
-                <a onClick={() => dispatch(setWindow(<Chemistry/>))} className={classes.cart}>Химия</a>
-                <a onClick={() => dispatch(setWindow(<Biology/>))} className={classes.cart}>Биология</a>
-                <a onClick={() => dispatch(setWindow(<Geography/>))} className={classes.cart}>География</a>
-            </div>
-        </>
+        <BrowserRouter>
+            <Routes>
+                <Route index element={
+                    <div className={classes.main}>
+                    <Link className={classes.cart} to={"/physics"}>Физика</Link>
+                    <Link className={classes.cart} to={"/chemistry"}>Химия</Link>
+                    <Link className={classes.cart} to={"/biology"}>Биология</Link>
+                    <Link className={classes.cart} to={"/geography"}>География</Link>
+                </div>
+                } />
+                <Route path="physics" element={<Physics />} />
+                <Route path="chemistry" element={<Chemistry />} />
+                <Route path="biology" element={<Biology />} />
+                <Route path="geography" element={<Geography />} />
+            </Routes>
+        </BrowserRouter>
     )
 }
 
