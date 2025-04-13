@@ -1,7 +1,5 @@
 import MainPage from "./MainPage"
 import { createUseStyles } from "react-jss";
-import { useSelector } from "react-redux";
-import Atom from "./chemistry/Atom/Atom";
 import "./index.css"
 
 const useStyles = createUseStyles({
@@ -13,11 +11,10 @@ const useStyles = createUseStyles({
 
 function App() {
   const classes = useStyles()
-  const storeWindow = useSelector((store: any) => store.window.window)
 
   return (
     <div className={classes.app}>
-      {storeWindow === null ? <Atom/> : storeWindow}
+      <MainPage/>
     </div>
   )
 }

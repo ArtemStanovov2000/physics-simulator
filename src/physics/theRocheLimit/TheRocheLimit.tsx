@@ -2,10 +2,9 @@ import { createUseStyles } from "react-jss";
 import { useEffect, useState, FC, RefObject, useRef } from "react";
 import { renderElement } from "./logic/renderElement";
 import { createStartWindow } from "../../utils/createStartWindow";
-import { useDispatch } from "react-redux";
-import { setWindow } from "../../store/windowSlice";
 import { createDottedCircle } from "./logic/createDottedCircle";
 import { restart } from "./logic/restart";
+import { Link, Route, Routes } from "react-router";
 import Physics from "../Physics";
 import Button from "../../shared/Button";
 import ArrowBackButton from "../../shared/ButtonIcons/ArrowBackButton";
@@ -36,40 +35,45 @@ const TheRocheLimit: FC = () => {
     const [frameIndex, setFrameIndex] = useState(1);
     const [isWork, setIsWork] = useState(true);
     const classes = useStyles()
-    const dispatch = useDispatch()
 
     useEffect(() => {
         const timer = setInterval(() => {
             setFrameIndex(frameIndex => frameIndex + 1);
-        }, 16);
+        }, 20);
 
         return () => clearInterval(timer);
-    });
+    }, [frameIndex]);
 
-    useEffect(() => {
+    requestAnimationFrame(() => {
         const canvas: HTMLCanvasElement | null = canvasRef.current;
         const ctx: CanvasRenderingContext2D | null | undefined = canvas?.getContext('2d')
         createStartWindow(ctx, window.innerWidth, window.innerHeight)
         createDottedCircle(ctx, 315)
         renderElement(ctx, isWork)
-    }, [frameIndex])
+    })
 
     return (
-        <div tabIndex={0} className={classes.page}>
-            <canvas
-                ref={canvasRef}
-                width={window.innerWidth}
-                height={window.innerHeight}
-                className={classes.canvas}>
-            </canvas>
-            <div className={classes.nav}>
-                <Button isNav={true} icon={<ArrowBackButton />} label={"На раздел выше"} onClick={() => dispatch(setWindow(<Physics />))} />
-                <Button onClick={() => setIsWork(true)} icon={<ArrowStartButton />} label={"Запустить симуляцию"} />
-                <Button onClick={() => setIsWork(false)} icon={<PauseButton />} label={"Остановить симуляцию"} />
-                <Button onClick={() => restart()} icon={<CrossButton />} label={"Перезапустить симуляцию"} />
-                <Button icon={<ExplanationButton />} label={"[ Объяснение ]"} onClick={() => dispatch(setWindow(<Explanation />))}/>
-            </div>
-        </div>
+        <Routes>
+            <Route index element={
+                <div tabIndex={0} className={classes.page}>
+                    <canvas
+                        ref={canvasRef}
+                        width={window.innerWidth}
+                        height={window.innerHeight}
+                        className={classes.canvas}>
+                    </canvas>
+                    <div className={classes.nav}>
+                        <Link to={"/physics"}><Button isNav={true} icon={<ArrowBackButton />} label={"На раздел выше"} /></Link>
+                        <Button onClick={() => setIsWork(true)} icon={<ArrowStartButton />} label={"Запустить симуляцию"} />
+                        <Button onClick={() => setIsWork(false)} icon={<PauseButton />} label={"Остановить симуляцию"} />
+                        <Button onClick={() => restart()} icon={<CrossButton />} label={"Перезапустить симуляцию"} />
+                        <Link to={"/physics/theRocheLimit/explanation"}><Button icon={<ExplanationButton />} label={"[ Объяснение ]"}></Button></Link>
+                    </div>
+                </div>
+            } />
+            <Route path="/physics/*" element={<Physics />} />
+            <Route path="/explanation" element={<Explanation />} />
+        </Routes>
     )
 }
 

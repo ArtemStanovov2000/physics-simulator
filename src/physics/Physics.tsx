@@ -1,13 +1,11 @@
 import { FC } from "react";
 import { createUseStyles } from "react-jss";
-import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import { setWindow } from "../store/windowSlice";
 import { image } from "../assets/image/image";
+import { Link, Route, Routes } from "react-router";
 import TheRocheLimit from "./theRocheLimit/TheRocheLimit";
 import Proton from "./Proton/Proton";
 import MainPage from "../MainPage";
-import Cart from "../shared/Cart";
 
 const useStyles = createUseStyles({
     main: {
@@ -77,7 +75,6 @@ const useStyles = createUseStyles({
 const Physics: FC = () => {
     const [time, setTime] = useState(0);
     const classes = useStyles()
-    const dispatch = useDispatch()
 
     useEffect(() => {
         const timer = setInterval(() => {
@@ -88,11 +85,18 @@ const Physics: FC = () => {
     });
 
     return (
-        <div className={classes.main}>
-            <a onClick={() => dispatch(setWindow(<MainPage />))} className={classes.mainCart}>На раздел выше</a>
-            {time > 10 ? <Cart onClick={() => dispatch(setWindow(<TheRocheLimit />))} label={"Предел Роша"}/> : null}
-            {time > 20 ? <Cart onClick={() => dispatch(setWindow(<Proton />))} label={"Протон"}/> : null}
-        </div>
+            <Routes>
+                <Route index element={
+                    <div className={classes.main}>
+                        <Link className={classes.mainCart} to={"/"}>На раздел выше</Link>
+                        {time > 10 ? <Link className={classes.cart} to={"/physics/theRocheLimit"}>Предел Роша</Link> : null}
+                        {time > 20 ? <Link className={classes.cart} to={"/physics/proton"}>Протон</Link> : null}
+                    </div>
+                } />
+                <Route path="" element={<MainPage />} />
+                <Route path="/theRocheLimit/*" element={<TheRocheLimit />} />
+                <Route path="/proton/*" element={<Proton />} />
+            </Routes>
     )
 }
 

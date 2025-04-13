@@ -1,10 +1,9 @@
 import { createUseStyles } from "react-jss";
 import { useEffect, useState, FC, RefObject, useRef } from "react";
-import { useDispatch } from "react-redux";
-import { setWindow } from "../../store/windowSlice";
 import { createStartWindow } from "../../utils/createStartWindow";
 import { renderElement } from "./logic/renderElement";
 import { protonPageCoordinates } from "./coordinates";
+import { Link, Route, Routes } from "react-router";
 import Physics from "../Physics";
 import Button from "../../shared/Button";
 import Explanation from "./Explanation/Explanation";
@@ -36,22 +35,21 @@ const Proton: FC = () => {
     const [isWork, setIsWork] = useState(true);
     const [mouseDoun, setMouseDoun] = useState(false);
     const classes = useStyles()
-    const dispatch = useDispatch()
 
     useEffect(() => {
         const timer = setInterval(() => {
             setFrameIndex(frameIndex => frameIndex + 1);
-        }, 16);
+        }, 10);
 
         return () => clearInterval(timer);
-    });
+    }, [frameIndex]);
 
-    useEffect(() => {
+    requestAnimationFrame(() => {
         const canvas: HTMLCanvasElement | null = canvasRef.current;
         const ctx: CanvasRenderingContext2D | null | undefined = canvas?.getContext('2d')
         createStartWindow(ctx, window.innerWidth, window.innerHeight)
         renderElement(ctx, isWork, mouseDoun)
-    }, [frameIndex])
+    })
 
     const onMouseMove = (e: any) => {
         protonPageCoordinates.setCoordinates(
@@ -61,23 +59,30 @@ const Proton: FC = () => {
     }
 
     return (
-        <div tabIndex={0} className={classes.page}>
-            <canvas
-                ref={canvasRef}
-                onMouseMove={onMouseMove}
-                onMouseUp={() => setMouseDoun(false)}
-                onMouseDown={() => setMouseDoun(true)}
-                width={window.innerWidth}
-                height={window.innerHeight}
-                className={classes.canvas}>
-            </canvas>
-            <div className={classes.nav}>
-                <Button isNav={true} icon={<ArrowBackButton />} label={"На раздел выше"} onClick={() => dispatch(setWindow(<Physics />))} />
-                <Button onClick={() => setIsWork(true)} icon={<ArrowStartButton />} label={"Запустить симуляцию"} />
-                <Button onClick={() => setIsWork(false)} icon={<PauseButton />} label={"Остановить симуляцию"} />
-                <Button icon={<ExplanationButton />} label={"[ Объяснение ]"} onClick={() => dispatch(setWindow(<Explanation />))}/>
-            </div>
-        </div>
+        <Routes>
+            <Route index element={
+                <div tabIndex={0} className={classes.page}>
+                    <canvas
+                        ref={canvasRef}
+                        onMouseMove={onMouseMove}
+                        onMouseUp={() => setMouseDoun(false)}
+                        onMouseDown={() => setMouseDoun(true)}
+                        width={window.innerWidth}
+                        height={window.innerHeight}
+                        className={classes.canvas}>
+                    </canvas>
+                    <div className={classes.nav}>
+                        <Link to={"/physics"}><Button isNav={true} icon={<ArrowBackButton />} label={"На раздел выше"} /></Link>
+                        <Button onClick={() => setIsWork(true)} icon={<ArrowStartButton />} label={"Запустить симуляцию"} />
+                        <Button onClick={() => setIsWork(false)} icon={<PauseButton />} label={"Остановить симуляцию"} />
+                        <Link to={"/physics/proton/explanation"}><Button icon={<ExplanationButton />} label={"[ Объяснение ]"}></Button></Link>
+                    </div>
+                </div>
+
+            } />
+            <Route path="/physics/*" element={<Physics />} />
+            <Route path="/explanation" element={<Explanation />} />
+        </Routes>
     )
 }
 

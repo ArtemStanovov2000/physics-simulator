@@ -13,8 +13,6 @@ export const createParthForGravity = () => {
         const distanceX = (Math.random() - 0.5) * size
         const distanceY = (Math.random() - 0.5) * size
 
-        console.log((Math.pow(distanceX, 2) + Math.pow(distanceY, 2)) < size)
-
         if ((Math.pow(distanceX, 2) + Math.pow(distanceY, 2)) < Math.pow(size / 2, 2)) {
             partsForGravity.push({
                 x: Math.floor(width / 2) + distanceX,

@@ -53,10 +53,10 @@ const MainPage: FC = () => {
                     <Link className={classes.cart} to={"/geography"}>География</Link>
                 </div>
                 } />
-                <Route path="physics" element={<Physics />} />
-                <Route path="chemistry" element={<Chemistry />} />
-                <Route path="biology" element={<Biology />} />
-                <Route path="geography" element={<Geography />} />
+                <Route path="/physics/*" element={<Physics />} />
+                <Route path="/chemistry/*" element={<Chemistry />} />
+                <Route path="/biology/*" element={<Biology />} />
+                <Route path="/geography/*" element={<Geography />} />
             </Routes>
         </BrowserRouter>
     )
