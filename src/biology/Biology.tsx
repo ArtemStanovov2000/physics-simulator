@@ -1,12 +1,10 @@
 import { FC } from "react";
 import { createUseStyles } from "react-jss";
-import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import { setWindow } from "../store/windowSlice";
 import { image } from "../assets/image/image";
 import Epidemic from "./Epidemic/Epidemic";
 import MainPage from "../MainPage";
-import Cart from "../shared/Cart";
+import { Link, Route, Routes } from "react-router";
 
 const useStyles = createUseStyles({
     main: {
@@ -76,7 +74,6 @@ const useStyles = createUseStyles({
 const Biology: FC = () => {
     const [time, setTime] = useState(0);
     const classes = useStyles()
-    const dispatch = useDispatch()
 
     useEffect(() => {
         const timer = setInterval(() => {
@@ -87,10 +84,16 @@ const Biology: FC = () => {
     });
 
     return (
-        <div className={classes.main}>
-            <a onClick={() => dispatch(setWindow(<MainPage />))} className={classes.mainCart}>На раздел выше</a>
-            {time > 10 ? <Cart label={"Эпидемия"} onClick={() => dispatch(setWindow(<Epidemic/>))}/> : null}
-        </div>
+        <Routes>
+            <Route index element={
+                <div className={classes.main}>
+                    <Link className={classes.mainCart} to={"/"}>На раздел выше</Link>
+                    {time > 10 ? <Link className={classes.cart} to={"/biology/epidemic"}>Эпидемия</Link> : null}
+                </div>
+            } />
+            <Route path="" element={<MainPage />} />
+            <Route path="/epidemic/*" element={<Epidemic />} />
+        </Routes>
     )
 }
 

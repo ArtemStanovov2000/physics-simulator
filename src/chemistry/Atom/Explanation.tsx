@@ -1,12 +1,11 @@
 import { createUseStyles } from "react-jss";
 import { FC } from "react";
-import { useDispatch } from "react-redux";
 import { image } from "../../assets/image/image";
-import { setWindow } from "../../store/windowSlice";
 import Button from "../../shared/Button";
 import Atom from "./Atom";
 import ArrowBackButton from "../../shared/ButtonIcons/ArrowBackButton";
 import AttentionBlock from "../../shared/Attention/Attention/AttentionBlock";
+import { Route, Routes, Link } from "react-router";
 
 const useStyles = createUseStyles({
     page: {
@@ -91,12 +90,12 @@ const useStyles = createUseStyles({
 const Explanation: FC = () => {
     const classes = useStyles()
 
-    const dispatch = useDispatch()
-
     return (
+        <Routes>
+            <Route index element={
         <div className={classes.page}>
             <div className={classes.buttonBox}>
-                <Button isNav={true} icon={<ArrowBackButton />} label={"Вернуться к симуляции"} onClick={() => dispatch(setWindow(<Atom />))} />
+            <Link to={"/chemistry/atom"}><Button isNav={true} icon={<ArrowBackButton />} label={"Вернуться к симуляции"} /></Link>
             </div>
             <div className={classes.innerBox}>
                 <div className={classes.textBox}>
@@ -164,7 +163,9 @@ const Explanation: FC = () => {
                     </p>
                 </div>
             </div>
-        </div >
+        </div >} />
+            <Route path="/atom/*" element={<Atom />} />
+        </Routes>
     )
 }
 

@@ -11,6 +11,7 @@ import Chemistry from "../Chemistry";
 import Button from "../../shared/Button";
 import ArrowBackButton from "../../shared/ButtonIcons/ArrowBackButton";
 import ExplanationButton from "../../shared/ButtonIcons/ExplanationButton";
+import { Link, Route, Routes } from "react-router";
 
 const useStyles = createUseStyles({
     page: {
@@ -136,44 +137,49 @@ const Atom: FC = () => {
     }
 
     return (
-        <div tabIndex={0} className={classes.page}>
-            <canvas
-                ref={canvasRef}
-                width={window.innerWidth}
-                height={window.innerHeight}
-                className={classes.canvas}>
-            </canvas>
-            <div className={classes.nav}>
-                <Button isNav={true} icon={<ArrowBackButton />} label={"На раздел выше"} onClick={() => dispatch(setWindow(<Chemistry />))} />
-                <Button icon={<ExplanationButton />} label={"[ Объяснение ]"} onClick={() => dispatch(setWindow(<Explanation />))}/>
-            </div>
-            <div className={classes.elementList}>
-                {listElements.map((element, index) => <button onClick={() => setParams(element)} key={index} className={classes.element}>{element.name}</button>)}
-            </div>
-            <div className={classes.params}>
-                <h3 className={classes.paramsTitle}>Параметры атома</h3>
-                <div className={classes.paramsItem}>
-                    <p className={classes.paramsItemDesc}>Назвавание элемента - </p>
-                    <p className={classes.paramsItemValue}>{label}</p>
-                </div>
-                <div className={classes.paramsItem}>
-                    <p className={classes.paramsItemDesc}>Обозначение элемента - </p>
-                    <p className={classes.paramsItemValue}>{name}</p>
-                </div>
-                <div className={classes.paramsItem}>
-                    <p className={classes.paramsItemDesc}>Атомный номер - </p>
-                    <p className={classes.paramsItemValue}>{protonCount}</p>
-                </div>
-                <div className={classes.paramsItem}>
-                    <p className={classes.paramsItemDesc}>Электронные оболочки - </p>
-                    <p className={classes.paramsItemValue}>{electrons.join(", ")}</p>
-                </div>
-                <div className={classes.paramsItem}>
-                    <p className={classes.paramsItemDesc}>Атомная масса, а.е.м. - </p>
-                    <p className={classes.paramsItemValue}>{mass}</p>
-                </div>
-            </div>
-        </div>
+        <Routes>
+            <Route index element={
+                <div tabIndex={0} className={classes.page}>
+                    <canvas
+                        ref={canvasRef}
+                        width={window.innerWidth}
+                        height={window.innerHeight}
+                        className={classes.canvas}>
+                    </canvas>
+                    <div className={classes.nav}>
+                        <Link to={"/chemistry"}><Button isNav={true} icon={<ArrowBackButton />} label={"На раздел выше"} /></Link>
+                        <Link to={"/chemistry/atom/explanation"}><Button icon={<ExplanationButton />} label={"[ Объяснение ]"}></Button></Link>
+                    </div>
+                    <div className={classes.elementList}>
+                        {listElements.map((element, index) => <button onClick={() => setParams(element)} key={index} className={classes.element}>{element.name}</button>)}
+                    </div>
+                    <div className={classes.params}>
+                        <h3 className={classes.paramsTitle}>Параметры атома</h3>
+                        <div className={classes.paramsItem}>
+                            <p className={classes.paramsItemDesc}>Назвавание элемента - </p>
+                            <p className={classes.paramsItemValue}>{label}</p>
+                        </div>
+                        <div className={classes.paramsItem}>
+                            <p className={classes.paramsItemDesc}>Обозначение элемента - </p>
+                            <p className={classes.paramsItemValue}>{name}</p>
+                        </div>
+                        <div className={classes.paramsItem}>
+                            <p className={classes.paramsItemDesc}>Атомный номер - </p>
+                            <p className={classes.paramsItemValue}>{protonCount}</p>
+                        </div>
+                        <div className={classes.paramsItem}>
+                            <p className={classes.paramsItemDesc}>Электронные оболочки - </p>
+                            <p className={classes.paramsItemValue}>{electrons.join(", ")}</p>
+                        </div>
+                        <div className={classes.paramsItem}>
+                            <p className={classes.paramsItemDesc}>Атомная масса, а.е.м. - </p>
+                            <p className={classes.paramsItemValue}>{mass}</p>
+                        </div>
+                    </div>
+                </div>} />
+            <Route path="/chemistry/*" element={<Chemistry />} />
+            <Route path="/explanation" element={<Explanation />} />
+        </Routes>
     )
 }
 

@@ -1,12 +1,10 @@
 import { FC } from "react";
 import { createUseStyles } from "react-jss";
-import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import { setWindow } from "../store/windowSlice";
 import { image } from "../assets/image/image";
 import MainPage from "../MainPage";
-import Cart from "../shared/Cart";
 import Tides from "./Tides/Tides";
+import { Link, Route, Routes } from "react-router";
 
 const useStyles = createUseStyles({
     main: {
@@ -76,7 +74,6 @@ const useStyles = createUseStyles({
 const Geography: FC = () => {
     const [time, setTime] = useState(0);
     const classes = useStyles()
-    const dispatch = useDispatch()
 
     useEffect(() => {
         const timer = setInterval(() => {
@@ -87,10 +84,16 @@ const Geography: FC = () => {
     });
 
     return (
-        <div className={classes.main}>
-            <a onClick={() => dispatch(setWindow(<MainPage />))} className={classes.mainCart}>На раздел выше</a>
-            {time > 20 ? <Cart onClick={() => dispatch(setWindow(<Tides />))} label={"Приливы"}/> : null}
-        </div>
+        <Routes>
+            <Route index element={
+                <div className={classes.main}>
+                    <Link className={classes.mainCart} to={"/"}>На раздел выше</Link>
+                    {time > 10 ? <Link className={classes.cart} to={"/geography/tides"}>Приливы</Link> : null}
+                </div>
+            } />
+            <Route path="" element={<MainPage />} />
+            <Route path="/tides/*" element={<Tides />} />
+        </Routes>
     )
 }
 
