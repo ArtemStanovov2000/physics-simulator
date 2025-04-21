@@ -120,9 +120,9 @@ const Atom: FC = () => {
         return () => clearInterval(timer);
     });
 
+    const canvas: HTMLCanvasElement | null = canvasRef.current;
+    const ctx: CanvasRenderingContext2D | null | undefined = canvas?.getContext('2d')
     useEffect(() => {
-        const canvas: HTMLCanvasElement | null = canvasRef.current;
-        const ctx: CanvasRenderingContext2D | null | undefined = canvas?.getContext('2d')
         createStartWindow(ctx, window.innerWidth, window.innerHeight)
         renderElement(ctx, electrons, protonCount, neutronCount)
     }, [frameIndex])

@@ -44,9 +44,9 @@ const TheRocheLimit: FC = () => {
         return () => clearInterval(timer);
     }, [frameIndex]);
 
+    const canvas: HTMLCanvasElement | null = canvasRef.current;
+    const ctx: CanvasRenderingContext2D | null | undefined = canvas?.getContext('2d')
     requestAnimationFrame(() => {
-        const canvas: HTMLCanvasElement | null = canvasRef.current;
-        const ctx: CanvasRenderingContext2D | null | undefined = canvas?.getContext('2d')
         createStartWindow(ctx, window.innerWidth, window.innerHeight)
         createDottedCircle(ctx, 315)
         renderElement(ctx, isWork)

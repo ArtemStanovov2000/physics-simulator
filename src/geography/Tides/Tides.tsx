@@ -2,13 +2,14 @@ import { createUseStyles } from "react-jss";
 import { useEffect, useState, FC, RefObject, useRef } from "react";
 import { createStartWindow } from "../../utils/createStartWindow";
 import { renderElement } from "./logic/renderElement";
+import { Link, Route, Routes } from "react-router";
 import Geography from "../Geography";
+import Explanation from "./Explanation";
 import Button from "../../shared/Button";
 import ArrowBackButton from "../../shared/ButtonIcons/ArrowBackButton";
 import ArrowStartButton from "../../shared/ButtonIcons/ArrowStartButton";
 import PauseButton from "../../shared/ButtonIcons/PauseButton";
 import ExplanationButton from "../../shared/ButtonIcons/ExplanationButton";
-import { Link, Route, Routes } from "react-router";
 
 const useStyles = createUseStyles({
     page: {
@@ -40,9 +41,9 @@ const Tides: FC = () => {
         return () => clearInterval(timer);
     });
 
+    const canvas: HTMLCanvasElement | null = canvasRef.current;
+    const ctx: CanvasRenderingContext2D | null | undefined = canvas?.getContext('2d')
     requestAnimationFrame(() => {
-        const canvas: HTMLCanvasElement | null = canvasRef.current;
-        const ctx: CanvasRenderingContext2D | null | undefined = canvas?.getContext('2d')
         createStartWindow(ctx, window.innerWidth, window.innerHeight)
         renderElement(ctx, isWork, frameIndex)
     })
@@ -61,12 +62,13 @@ const Tides: FC = () => {
                             <Link to={"/geography"}><Button isNav={true} icon={<ArrowBackButton />} label={"На раздел выше"} /></Link>
                             <Button onClick={() => setIsWork(true)} icon={<ArrowStartButton />} label={"Запустить симуляцию"} />
                             <Button onClick={() => setIsWork(false)} icon={<PauseButton />} label={"Остановить симуляцию"} />
-                            <Button icon={<ExplanationButton />} label={"[ Объяснение ]"}></Button>
+                            <Link to={"/geography/tides/explanation"}><Button icon={<ExplanationButton />} label={"[ Объяснение ]"}></Button></Link>
                         </div>
                     </div>
 
                 } />
                 <Route path="/geography/*" element={<Geography />} />
+                <Route path="/explanation" element={<Explanation />} />
             </Routes>
     )
 }
