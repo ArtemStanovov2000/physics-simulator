@@ -1,7 +1,5 @@
 import { createUseStyles } from "react-jss";
 import { useEffect, useState, FC, RefObject, useRef } from "react";
-import { useDispatch } from "react-redux";
-import { setWindow } from "../../store/windowSlice";
 import { createStartWindow } from "../../utils/createStartWindow";
 import { renderElement } from "./logic/renderElement";
 import { listElements } from "./logic/listElements";
@@ -109,8 +107,6 @@ const Atom: FC = () => {
     const [mass, setMass] = useState(1);
     const [neutronCount, setNeutronCount] = useState(0);
     const classes = useStyles()
-    const dispatch = useDispatch()
-
 
     useEffect(() => {
         const timer = setInterval(() => {

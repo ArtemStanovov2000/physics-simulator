@@ -11,8 +11,6 @@ for (let i = 0; i < 56; i++) {
     }
 }
 
-const electronCount = [2, 8, 14, 2]
-
 
 
 

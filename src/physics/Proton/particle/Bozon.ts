@@ -1,5 +1,5 @@
 export class Bozon {
-    readonly spin: 1
+    spin: number
     readonly group: "bozon"
     readonly family: "calibrationBoson"
     readonly size: 20

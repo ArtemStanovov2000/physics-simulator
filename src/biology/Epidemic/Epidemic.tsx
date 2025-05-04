@@ -3,13 +3,13 @@ import { useEffect, useState, FC, RefObject, useRef } from "react";
 import { createStartWindow } from "../../utils/createStartWindow";
 import { renderElement } from "./logic/renderElement";
 import { restart } from "./logic/parts";
+import { Link, Route, Routes } from "react-router";
 import Biology from "../Biology";
 import Button from "../../shared/Button";
 import ArrowBackButton from "../../shared/ButtonIcons/ArrowBackButton";
 import ArrowStartButton from "../../shared/ButtonIcons/ArrowStartButton";
 import PauseButton from "../../shared/ButtonIcons/PauseButton";
 import CrossButton from "../../shared/ButtonIcons/CrossButton";
-import { Link, Route, Routes } from "react-router";
 
 const useStyles = createUseStyles({
     page: {
@@ -29,7 +29,7 @@ const useStyles = createUseStyles({
 
 const Epidemic: FC = () => {
     const canvasRef: RefObject<HTMLCanvasElement | null> = useRef<HTMLCanvasElement>(null)
-    const [frameIndex, setFrameIndex] = useState(1);
+    const [, setFrameIndex] = useState(1);
     const [isWork, setIsWork] = useState(true);
     const classes = useStyles()
 

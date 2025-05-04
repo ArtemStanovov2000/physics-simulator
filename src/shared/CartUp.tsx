@@ -1,6 +1,5 @@
 import { FC } from "react";
 import { createUseStyles } from "react-jss";
-import { useEffect, useState } from "react";
 import { MouseEventHandler } from "react";
 
 const useStyles = createUseStyles({

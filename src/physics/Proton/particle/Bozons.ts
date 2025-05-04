@@ -5,7 +5,6 @@ export class Z_bozon extends Bozon {
     readonly mass: 91200
     readonly name: "Z0"
     readonly color: "#303030"
-    readonly spin: 1
 
     constructor(coordinates: {x: number, y: number}, colorBozon: "green" | "red" | "blue") {
         super(coordinates, 13, 7, colorBozon)
@@ -22,7 +21,6 @@ export class WPositiwe_bozon extends Bozon {
     readonly mass: 80400
     readonly name: "W+"
     readonly color: "#403a3a"
-    readonly spin: 1
 
     constructor(coordinates: {x: number, y: number}, colorBozon: "green" | "red" | "blue") {
         super(coordinates, 15, 7, colorBozon)
@@ -39,7 +37,6 @@ export class WNegative_bozon extends Bozon {
     readonly mass: 80400
     readonly name: "W-"
     readonly color: "#49423d"
-    readonly spin: 1
 
     constructor(coordinates: {x: number, y: number}, colorBozon: "green" | "red" | "blue") {
         super(coordinates, 14, 7, colorBozon)
